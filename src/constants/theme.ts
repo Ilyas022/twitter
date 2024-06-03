@@ -1,4 +1,4 @@
-import { Theme } from "types/interfaces"
+import { Theme } from 'types/interfaces'
 
 const sizes = [24, 32, 48, 72, 94, 100, 120, 140, 255, 350, 445, 540, 600, 740, 1100, 1280, 1400]
 
