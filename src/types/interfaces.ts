@@ -2,15 +2,10 @@
 interface ThemeColors {
 	primary: string
 	secondary: string
-	range: string
-	rangeStart: string
-	holiday: string
 	border: string
-	colorText: string
-	inActive: string
-	shadow: string
 	popUpBg: string
 	white: string
+	black: string
 }
 
 export interface Theme {

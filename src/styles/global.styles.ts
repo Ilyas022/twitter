@@ -18,10 +18,10 @@ export const GlobalStyles = createGlobalStyle`
 
 	html {
 		font-size: 62.5%;
-		font-family: "Poppins", sans-serif;
+		font-family: "Roboto", sans-serif;
 	}
 
-	html,body,#root{
+	html,body{
 		height: 100%;
 		line-height: 1;
 		-ms-text-size-adjust: 100%;
@@ -39,13 +39,19 @@ export const GlobalStyles = createGlobalStyle`
 
 	h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
 
-	*a, *button {
+	a, button {
 		color: inherit;
 	}
 
-	body {
+	#root {
+		min-height: 100%;
+		display: flex;
+		flex-direction: column;
+		
+		> main {
+		flex: 1 0 auto;
+	}
 	}
 
-	main {
-	}
+	
 `

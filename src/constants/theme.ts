@@ -8,7 +8,7 @@ const indents = [4, 8, 16, 20, 24, 40, 56, 80, 100, 120, 400]
 
 const fonts = [14, 16, 20, 22, 24, 30, 38, 46, 56]
 
-const fontWeights = [300, 400, 500, 600]
+const fontWeights = [300, 400, 500, 600, 900]
 
 const lineHeights = [24, 28, 33, 40, 60, 112, 150]
 
@@ -17,17 +17,12 @@ const borders = [1, 2, 4, 8, 16]
 const bordersRadii = [1, 2, 3, 4, 8]
 
 export const colors = {
-	primary: '#2f80ed',
+	primary: '#1DA1F2',
 	secondary: '#f1f1f1',
-	range: '#2f80ed1a',
-	rangeStart: '#2f80ed99',
-	holiday: '#ff0000',
-	border: '#ddd',
-	inActive: '#aaa',
-	colorText: '#000',
-	shadow: '0px 0px 13px -7px rgba(0, 0, 0, 0.75)',
+	border: '#e4eaed',
 	popUpBg: '#000000b8',
 	white: '#fff',
+	black: '#000',
 }
 
 export const theme: Theme = {
