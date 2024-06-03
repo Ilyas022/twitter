@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import authImg from 'assets/images/AuthImg.png'
 import {
 	COOKIE_POLICY_PAGE_ROUTE,
-	LOGIN_PAGE_ROUTE,
 	PRIVACY_PAGE_ROUTE,
+	SIGNIN_PAGE_ROUTE,
 	TERMS_PAGE_ROUTE,
 } from 'constants/routes'
 
@@ -46,7 +46,7 @@ function AuthPage() {
 							<Link to={COOKIE_POLICY_PAGE_ROUTE}>Cookie Use</Link>.
 						</Warning>
 						<Login>
-							Already have an account? <Link to={LOGIN_PAGE_ROUTE}>Log in</Link>
+							Already have an account? <Link to={SIGNIN_PAGE_ROUTE}>Log in</Link>
 						</Login>
 					</Info>
 				</Container>

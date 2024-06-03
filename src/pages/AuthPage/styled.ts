@@ -58,6 +58,11 @@ export const Button = styled.button`
 	text-align: center;
 	font-weight: ${(props) => getFontWeights(props, 2)};
 	font-size: ${(props) => getFonts(props, 2)};
+	transition: background-color 0.3s;
+
+	&:hover {
+		background-color: ${(props) => getColors(props).hover};
+	}
 
 	&:first-of-type {
 		margin-bottom: ${(props) => getIndents(props, 3, 1)};
@@ -79,7 +84,7 @@ export const Warning = styled.p`
 		transition: color 0.3s;
 
 		&:hover {
-			color: ${(props) => getColors(props).black};
+			color: ${(props) => getColors(props).hover};
 		}
 	}
 `
@@ -92,7 +97,7 @@ export const Login = styled.p`
 		transition: color 0.3s;
 
 		&:hover {
-			color: ${(props) => getColors(props).black};
+			color: ${(props) => getColors(props).hover};
 		}
 	}
 `
@@ -130,6 +135,6 @@ export const FooterLink = styled(Link)`
 	transition: color 0.3s;
 
 	&:hover {
-		color: ${(props) => getColors(props).primary};
+		color: ${(props) => getColors(props).hover};
 	}
 `

@@ -1,7 +1,7 @@
 export const HOME_PAGE_ROUTE = `/`
 export const AUTH_PAGE_ROUTE = `/auth`
 export const SIGNUP_PAGE_ROUTE = `/signup`
-export const LOGIN_PAGE_ROUTE = `/login`
+export const SIGNIN_PAGE_ROUTE = `/signin`
 export const ABOUT_PAGE_ROUTE = '/about'
 export const HELP_PAGE_ROUTE = '/help'
 export const TERMS_PAGE_ROUTE = '/terms'

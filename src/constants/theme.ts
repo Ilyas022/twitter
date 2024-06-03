@@ -19,7 +19,9 @@ const bordersRadii = [1, 2, 3, 4, 8]
 export const colors = {
 	primary: '#1DA1F2',
 	secondary: '#f1f1f1',
+	hover: '#1d82f2',
 	border: '#e4eaed',
+	placeHolder: '#0009',
 	popUpBg: '#000000b8',
 	white: '#fff',
 	black: '#000',

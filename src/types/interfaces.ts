@@ -2,7 +2,9 @@
 interface ThemeColors {
 	primary: string
 	secondary: string
+	hover: string
 	border: string
+	placeHolder: string
 	popUpBg: string
 	white: string
 	black: string
