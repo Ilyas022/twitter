@@ -20,9 +20,10 @@ export const colors = {
 	primary: '#1DA1F2',
 	secondary: '#f1f1f1',
 	hover: '#1d82f2',
-	border: '#e4eaed',
+	border: '#00000033',
 	placeHolder: '#0009',
 	popUpBg: '#000000b8',
+	error: '#f00',
 	white: '#fff',
 	black: '#000',
 }

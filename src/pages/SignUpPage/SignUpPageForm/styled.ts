@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-import Logo from 'assets/icons/logoIcon.svg?react'
 import {
 	getBorders,
 	getBordersRadii,
@@ -11,44 +10,42 @@ import {
 	getGaps,
 	getIndents,
 	getSizes,
+	getlineHeights,
 } from 'utils/themeGetters'
 
-export const Page = styled.main`
-	padding: ${(props) => getIndents(props, 6, 4)};
+export const SubTitle = styled.h2`
+	margin-bottom: ${(props) => getIndents(props, 4, 8)};
+	font-weight: ${(props) => getFontWeights(props, 3, 100)};
+	font-size: ${(props) => getFonts(props, 1, 2)};
 `
 
-export const Container = styled.div`
-	width: ${(props) => getSizes(props, 10, 5)};
-	height: ${(props) => getSizes(props, 10, 28)};
-	margin: 0 auto;
-`
-
-export const LogoIcon = styled(Logo)`
-	width: ${(props) => getSizes(props, 2, 2)};
-	height: ${(props) => getSizes(props, 2, -7)};
-	margin-bottom: ${(props) => getIndents(props, 5, -4)};
-	color: ${(props) => getColors(props).primary};
-`
-
-export const Title = styled.h1`
-	font-weight: ${(props) => getFontWeights(props, 4)};
-	font-size: ${(props) => getFonts(props, 6, 4)};
-	margin-bottom: ${(props) => getIndents(props, 5, -4)};
+export const Text = styled.p`
+	margin-bottom: ${(props) => getIndents(props, 4, 8)};
+	font-size: ${(props) => getFonts(props, 1)};
+	line-height: ${(props) => getlineHeights(props, 6)};
 `
 
 export const Form = styled.form`
 	display: flex;
 	flex-direction: column;
-	gap: ${(props) => getGaps(props, 3, 1)};
 	margin-bottom: ${(props) => getIndents(props, 5)};
 `
 
-export const Input = styled.input`
+export const Input = styled.input<{ $error: boolean }>`
+	display: block;
+	width: 100%;
 	padding: ${(props) => getIndents(props, 4, 1)} ${(props) => getIndents(props, 3)};
+	margin-bottom: ${(props) => getIndents(props, 2, -1)};
 	color: ${(props) => getColors(props).placeHolder};
 	font-size: ${(props) => getFonts(props, 1, 2)};
 	border: ${(props) => getBorders(props, 0)} solid ${(props) => getColors(props).border};
 	border-radius: ${(props) => getBordersRadii(props, 3, 2)};
+
+	${({ $error }) =>
+		$error &&
+		css`
+			border-color: ${(props) => getColors(props).error};
+		`}
 `
 
 export const Button = styled.button`
@@ -64,17 +61,37 @@ export const Button = styled.button`
 	&:hover {
 		background-color: ${(props) => getColors(props).hover};
 	}
+
+	&:disabled {
+		background-color: ${(props) => getColors(props).placeHolder};
+
+		&:hover {
+			background-color: ${(props) => getColors(props).popUpBg};
+		}
+	}
 `
 
-export const SignUp = styled(Link)`
-	display: block;
+export const AuthLink = styled(Link)`
+	margin-bottom: ${(props) => getIndents(props, 2, 1)};
 	font-size: ${(props) => getFonts(props, 1, 2)};
-	text-align: right;
 	color: ${(props) => getColors(props).primary};
-	text-align: right;
 	transition: color 0.3s;
 
 	&:hover {
 		color: ${(props) => getColors(props).hover};
+	}
+`
+
+export const SelectContainer = styled.div`
+	display: flex;
+	gap: ${(props) => getGaps(props, 2)};
+	margin-bottom: ${(props) => getIndents(props, 5, -2)};
+
+	& > * {
+		flex-grow: 1;
+	}
+
+	& > :first-child {
+		width: ${(props) => getSizes(props, 9, -38)};
 	}
 `

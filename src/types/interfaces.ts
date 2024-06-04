@@ -6,6 +6,7 @@ interface ThemeColors {
 	border: string
 	placeHolder: string
 	popUpBg: string
+	error: string
 	white: string
 	black: string
 }
