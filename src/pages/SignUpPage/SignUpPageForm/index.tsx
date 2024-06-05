@@ -1,12 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
-import { Timestamp, doc, getFirestore, setDoc } from 'firebase/firestore'
 import { useMemo } from 'react'
 import { Controller, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 import FormItem from 'components/FormItem'
 import Select from 'components/Select'
-import { AUTH_PAGE_ROUTE } from 'constants/routes'
+import { AUTH_PAGE_ROUTE, FEED_PAGE_ROUTE } from 'constants/routes'
+import { useActions } from 'hooks/useActions'
+import { signUpUser } from 'src/api/signUpUser'
 
 import { getDays, monthsArray, numberOfDaysInMonth, validationSchema, years } from './config'
 import { AuthLink, Button, Form, Input, SelectContainer, SubTitle, Text } from './styled'
@@ -17,7 +18,8 @@ function SignUpPageForm() {
 		resolver: yupResolver(validationSchema),
 		mode: 'onTouched',
 	})
-	const auth = getAuth()
+	const { setUser } = useActions()
+	const navigate = useNavigate()
 
 	const {
 		register,
@@ -28,24 +30,11 @@ function SignUpPageForm() {
 	} = formData
 
 	const onSubmit = handleSubmit(async (data) => {
-		const { birthDay, birthMonth, birthYear, email, name, phone, password, surname } = data
+		const userData = await signUpUser(data)
 
-		try {
-			const userData = await createUserWithEmailAndPassword(auth, email, password)
-			const db = getFirestore()
-			const ref = doc(db, 'users', userData.user.uid)
-			await setDoc(ref, {
-				birthDate: Timestamp.fromDate(
-					new Date(Number(birthYear), Number(birthMonth), Number(birthDay))
-				),
-				name,
-				surname,
-				tag: `@${name.toLowerCase()}_${surname.toLowerCase()}`,
-				phone,
-				email,
-			})
-		} catch (error) {
-			console.log(error)
+		if (userData) {
+			setUser(userData)
+			navigate(FEED_PAGE_ROUTE)
 		}
 	})
 

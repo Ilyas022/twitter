@@ -30,7 +30,7 @@
           "styles/*": ["styles/*"],
           "types/*": ["types/*"],
           "pages/*": ["pages/*"],
-          "/*": ["*"],
+          "src/*": ["*"],
         },
     "types": ["node"],
   },

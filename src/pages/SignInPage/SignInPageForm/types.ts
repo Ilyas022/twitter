@@ -1,4 +1,4 @@
 export type FormData = {
-	email: string
+	emailOrPhone: string
 	password: string
 }

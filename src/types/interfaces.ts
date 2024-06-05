@@ -1,4 +1,3 @@
-// Theme
 interface ThemeColors {
 	primary: string
 	secondary: string
@@ -21,4 +20,14 @@ export interface Theme {
 	indents: number[]
 	borders: number[]
 	bordersRadii: number[]
+}
+
+export type UserData = {
+	birthDate: { seconds: number; nanoseconds: number } | null
+	email: string
+	name: string
+	phone: string | null
+	surname: string
+	tag: string
+	uid: string
 }

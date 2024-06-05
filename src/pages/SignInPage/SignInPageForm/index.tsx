@@ -1,8 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { useForm } from 'react-hook-form'
 
 import FormItem from 'components/FormItem'
+import { useActions } from 'hooks/useActions'
+import { signInUser } from 'src/api/signInUser'
 
 import { validationSchema } from './config'
 import { Button, Form, Input } from './styled'
@@ -17,25 +18,23 @@ function SignInPageForm() {
 		resolver: yupResolver(validationSchema),
 		mode: 'onTouched',
 	})
+	const { setUser } = useActions()
 
 	const onSubmit = handleSubmit(async (data) => {
-		const { email, password } = data
-		const auth = getAuth()
+		const userData = await signInUser(data)
 
-		try {
-			await signInWithEmailAndPassword(auth, email, password)
-		} catch (error) {
-			console.log(error)
+		if (userData) {
+			setUser(userData)
 		}
 	})
 
 	return (
 		<Form onSubmit={onSubmit}>
-			<FormItem errorMessage={errors.email?.message}>
+			<FormItem errorMessage={errors.emailOrPhone?.message}>
 				<Input
-					$error={!!errors.email?.message}
+					$error={!!errors.emailOrPhone?.message}
 					placeholder="Phone number, email address"
-					{...register('email')}
+					{...register('emailOrPhone')}
 				/>
 			</FormItem>
 			<FormItem errorMessage={errors.password?.message}>

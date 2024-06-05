@@ -1,14 +1,18 @@
-import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 import authImg from 'assets/images/AuthImg.png'
 import {
 	COOKIE_POLICY_PAGE_ROUTE,
+	FEED_PAGE_ROUTE,
 	PRIVACY_PAGE_ROUTE,
 	SIGNIN_PAGE_ROUTE,
 	SIGNUP_PAGE_ROUTE,
 	TERMS_PAGE_ROUTE,
 } from 'constants/routes'
+import { useActions } from 'hooks/useActions'
+import { useTypedSelector } from 'hooks/useTypedSelector'
+import { signUpUserWithGoogle } from 'src/api/signUpUserWithGoogle'
+import { selectUser } from 'store/selectors/userSelectors'
 
 import { footerLinks } from './config'
 import {
@@ -28,18 +32,19 @@ import {
 } from './styled'
 
 function AuthPage() {
+	const { id } = useTypedSelector(selectUser)
 	const navigate = useNavigate()
+	const { setUser } = useActions()
+
+	if (id) {
+		return <Navigate to={FEED_PAGE_ROUTE} />
+	}
 
 	const handleGoogleAuth = async () => {
-		const auth = getAuth()
-		const provider = new GoogleAuthProvider()
+		const userData = await signUpUserWithGoogle()
 
-		try {
-			provider.addScope('https://www.googleapis.com/auth/user.birthday.read')
-			provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
-			await signInWithPopup(auth, provider)
-		} catch (error) {
-			console.log(error)
+		if (userData) {
+			setUser(userData)
 		}
 	}
 
