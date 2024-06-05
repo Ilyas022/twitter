@@ -1,3 +1,4 @@
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth'
 import { Link, useNavigate } from 'react-router-dom'
 
 import authImg from 'assets/images/AuthImg.png'
@@ -29,6 +30,19 @@ import {
 function AuthPage() {
 	const navigate = useNavigate()
 
+	const handleGoogleAuth = async () => {
+		const auth = getAuth()
+		const provider = new GoogleAuthProvider()
+
+		try {
+			provider.addScope('https://www.googleapis.com/auth/user.birthday.read')
+			provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
+			await signInWithPopup(auth, provider)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	const handleSignUpWithEmailClick = () => {
 		navigate(SIGNUP_PAGE_ROUTE)
 	}
@@ -42,7 +56,7 @@ function AuthPage() {
 						<LogoIcon />
 						<Title>Happening now</Title>
 						<SubTitle>Join Twitter today</SubTitle>
-						<Button>
+						<Button onClick={handleGoogleAuth}>
 							<GoogleIcon />
 							<span>Sign up with Google</span>
 						</Button>

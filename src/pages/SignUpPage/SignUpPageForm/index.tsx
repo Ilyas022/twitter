@@ -1,4 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { Timestamp, doc, getFirestore, setDoc } from 'firebase/firestore'
 import { useMemo } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
@@ -11,19 +13,40 @@ import { AuthLink, Button, Form, Input, SelectContainer, SubTitle, Text } from '
 import { FormData, MonthType } from './types'
 
 function SignUpPageForm() {
+	const formData = useForm<FormData>({
+		resolver: yupResolver(validationSchema),
+		mode: 'onTouched',
+	})
+	const auth = getAuth()
+
 	const {
 		register,
 		watch,
 		control,
 		handleSubmit,
 		formState: { errors, isDirty, isValid },
-	} = useForm<FormData>({
-		resolver: yupResolver(validationSchema),
-		mode: 'onTouched',
-	})
+	} = formData
 
-	const onSubmit = handleSubmit((data) => {
-		console.log(data)
+	const onSubmit = handleSubmit(async (data) => {
+		const { birthDay, birthMonth, birthYear, email, name, phone, password, surname } = data
+
+		try {
+			const userData = await createUserWithEmailAndPassword(auth, email, password)
+			const db = getFirestore()
+			const ref = doc(db, 'users', userData.user.uid)
+			await setDoc(ref, {
+				birthDate: Timestamp.fromDate(
+					new Date(Number(birthYear), Number(birthMonth), Number(birthDay))
+				),
+				name,
+				surname,
+				tag: `@${name.toLowerCase()}_${surname.toLowerCase()}`,
+				phone,
+				email,
+			})
+		} catch (error) {
+			console.log(error)
+		}
 	})
 
 	const birthMonth = watch('birthMonth')
@@ -38,6 +61,9 @@ function SignUpPageForm() {
 			<FormItem errorMessage={errors.name?.message}>
 				<Input $error={!!errors.name?.message} placeholder="Name" {...register('name')} />
 			</FormItem>
+			<FormItem errorMessage={errors.surname?.message}>
+				<Input $error={!!errors.surname?.message} placeholder="Surname" {...register('surname')} />
+			</FormItem>
 			<FormItem errorMessage={errors.phone?.message}>
 				<Input
 					$error={!!errors.phone?.message}
@@ -48,6 +74,14 @@ function SignUpPageForm() {
 			</FormItem>
 			<FormItem errorMessage={errors.email?.message}>
 				<Input $error={!!errors.email?.message} placeholder="Email" {...register('email')} />
+			</FormItem>
+			<FormItem errorMessage={errors.password?.message}>
+				<Input
+					type="password"
+					$error={!!errors.password?.message}
+					placeholder="Password"
+					{...register('password')}
+				/>
 			</FormItem>
 			<AuthLink to={AUTH_PAGE_ROUTE}>Use email</AuthLink>
 			<SubTitle>Date of birth</SubTitle>

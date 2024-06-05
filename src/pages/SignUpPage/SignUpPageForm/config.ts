@@ -2,7 +2,9 @@ import * as yup from 'yup'
 
 export const validationSchema = yup.object().shape({
 	name: yup.string().min(2, 'less then 2').required('Required'),
+	surname: yup.string().min(2, 'less then 2').required('Required'),
 	email: yup.string().email().min(5, 'less then 5').required('Required'),
+	password: yup.string().min(6, 'less then 6').required('Required'),
 	phone: yup
 		.string()
 		.matches(/^\+375/, 'Incorrect code')
