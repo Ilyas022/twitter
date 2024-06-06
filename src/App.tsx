@@ -18,7 +18,9 @@ function App() {
 			<Route path={AUTH_PAGE_ROUTE} element={<AuthPage />} />
 			<Route path={SIGNIN_PAGE_ROUTE} element={<SignInPage />} />
 			<Route path={SIGNUP_PAGE_ROUTE} element={<SignUpPage />} />
-			<Route path={FEED_PAGE_ROUTE} element={<PrivateRoute Component={FeedPage} />} />
+			<Route element={<PrivateRoute />}>
+				<Route path={FEED_PAGE_ROUTE} element={<FeedPage />} />
+			</Route>
 		</Routes>
 	)
 }
