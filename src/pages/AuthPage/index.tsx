@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import authImg from 'assets/images/AuthImg.png'
 import {
 	COOKIE_POLICY_PAGE_ROUTE,
-	FEED_PAGE_ROUTE,
+	HOME_PAGE_ROUTE,
 	PRIVACY_PAGE_ROUTE,
 	SIGNIN_PAGE_ROUTE,
 	SIGNUP_PAGE_ROUTE,
@@ -37,7 +37,7 @@ function AuthPage() {
 	const { setUser } = useActions()
 
 	if (id) {
-		return <Navigate to={FEED_PAGE_ROUTE} />
+		return <Navigate to={HOME_PAGE_ROUTE} />
 	}
 
 	const handleGoogleAuth = async () => {

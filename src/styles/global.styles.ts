@@ -31,7 +31,7 @@ export const GlobalStyles = createGlobalStyle`
 	}
 	input,button,textarea{font-family:inherit;}
 	input::-ms-clear{display: none;}
-	button{cursor: pointer; background-color: transparent; text-align: left}
+	button{display:block; cursor: pointer; background-color: transparent; text-align: left}
 	button::-moz-focus-inner {padding:0;border:0;}
 	a, a:visited{text-decoration: none;}
 	a:hover{text-decoration: none;}
