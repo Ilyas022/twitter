@@ -18,6 +18,7 @@ function PrivateRoute() {
 		<Wrapper>
 			<Navbar />
 			<Outlet />
+			<p>search</p>
 		</Wrapper>
 	)
 }

@@ -8,6 +8,7 @@ interface ThemeColors {
 	error: string
 	white: string
 	black: string
+	text: string
 }
 
 export interface Theme {
