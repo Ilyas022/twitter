@@ -35,6 +35,7 @@ export const TextArea = styled.textarea`
 	font-size: ${(props) => getFonts(props, 2, 2)};
 	color: ${(props) => getColors(props).text};
 	resize: none;
+	background-color: transparent;
 `
 
 export const AddImageBtn = styled.label`
