@@ -1,10 +1,14 @@
 import { collection, doc, getFirestore, query, where } from 'firebase/firestore'
+import { useState } from 'react'
+import { createPortal } from 'react-dom'
 import { useCollectionData, useDocumentData } from 'react-firebase-hooks/firestore'
 import { Navigate, useParams } from 'react-router-dom'
 
 import profileBgImage from 'assets/images/profileBgImage.png'
 import defaultUserIcon from 'assets/images/userIconLarge.png'
 import AddTweet from 'components/AddTweet'
+import PopUp from 'components/PopUp'
+import EditProfilePopUp from 'components/PopUps/EditProfilePopUp'
 import Tweets from 'components/Tweets'
 import { NOT_FOUND_PAGE_ROUTE } from 'constants/routes'
 import { UserData } from 'types/interfaces'
@@ -28,6 +32,7 @@ import {
 
 function ProfilePage() {
 	const { id } = useParams()
+	const [popUpOpen, setPopUpOpen] = useState(false)
 
 	const db = getFirestore()
 	const userRef = doc(db, 'users', id as string)
@@ -47,6 +52,10 @@ function ProfilePage() {
 	}
 	const { name, surname, tag, followers, following, numberOfTweets, about } = userData as UserData
 
+	const handleOpenPopUp = () => {
+		setPopUpOpen((prev) => !prev)
+	}
+
 	return (
 		<Page>
 			<Title>{name}</Title>
@@ -65,14 +74,21 @@ function ProfilePage() {
 						</FollowingsItem>
 						<FollowingsItem>
 							<FollowingsNumber>{followers || 0}</FollowingsNumber>
-							<FollowingsTitle>Following</FollowingsTitle>
+							<FollowingsTitle>Followers</FollowingsTitle>
 						</FollowingsItem>
 					</FollowingsInfo>
 				</UserInfoContainer>
-				<EditProfileBtn>Edit profile</EditProfileBtn>
+				<EditProfileBtn onClick={handleOpenPopUp}>Edit profile</EditProfileBtn>
 			</UserInfo>
 			<AddTweet numberOfTweets={numberOfTweets} />
 			<Tweets />
+			{popUpOpen &&
+				createPortal(
+					<PopUp handleClose={handleOpenPopUp} title="Edit profile">
+						<EditProfilePopUp />
+					</PopUp>,
+					document.body
+				)}
 		</Page>
 	)
 }

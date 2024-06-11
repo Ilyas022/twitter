@@ -72,7 +72,6 @@ function AddTweet({ numberOfTweets }: { numberOfTweets: number }) {
 		setImage(null)
 	}
 
-	console.log(99, !!tweetText)
 	return (
 		<Item>
 			<UserIcon src={ImagePlaceHolder} />
@@ -80,7 +79,7 @@ function AddTweet({ numberOfTweets }: { numberOfTweets: number }) {
 				<TextArea
 					value={tweetText}
 					onChange={handleTextChange}
-					placeholder="What’s happening Tweet"
+					placeholder="What's happening Tweet"
 				/>
 				<ControlsContainer>
 					<AddImageBtn>
