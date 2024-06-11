@@ -9,6 +9,10 @@ interface UserSlice {
 	phone: string | null
 	email: string
 	tag: string
+	numberOfTweets: number
+	followers: number
+	following: number
+	about: string
 }
 
 const initialState: UserSlice = {
@@ -20,6 +24,10 @@ const initialState: UserSlice = {
 	phone: '',
 	email: '',
 	tag: '',
+	numberOfTweets: 0,
+	followers: 0,
+	following: 0,
+	about: '',
 }
 
 const userSlice = createSlice({
@@ -28,6 +36,9 @@ const userSlice = createSlice({
 	reducers: {
 		setUser: (state, action: PayloadAction<UserSlice>) => {
 			return { ...state, ...action.payload }
+		},
+		unSetUser: () => {
+			return initialState
 		},
 	},
 })

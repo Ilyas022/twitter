@@ -1,3 +1,5 @@
+import { DocumentReference, Timestamp } from 'firebase/firestore'
+
 interface ThemeColors {
 	primary: string
 	secondary: string
@@ -8,6 +10,7 @@ interface ThemeColors {
 	error: string
 	white: string
 	black: string
+	text: string
 }
 
 export interface Theme {
@@ -30,4 +33,41 @@ export type UserData = {
 	surname: string
 	tag: string
 	uid: string
+	numberOfTweets: number
+	followers: number
+	following: number
+	about: string
+}
+
+export interface TweetResponse {
+	author: DocumentReference
+	createdAt: Timestamp
+	likes: DocumentReference[]
+	imageUrl: string | null
+	text: string
+}
+
+export interface AuthorType {
+	id: string
+	tag: string
+	surname: string
+	name: string
+}
+
+export interface User {
+	birthDate: Timestamp
+	email: string
+	name: string
+	phone: string
+	surname: string
+	tag: string
+}
+
+export interface TweetType {
+	text: string
+	createdAt: Timestamp
+	author: AuthorType
+	likes: DocumentReference[]
+	imageUrl: string | null
+	id: string
 }

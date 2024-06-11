@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom'
 
-import { AUTH_PAGE_ROUTE, HOME_PAGE_ROUTE } from 'constants/routes'
+import { AUTH_PAGE_ROUTE, PROFILE_PAGE_ROUTE } from 'constants/routes'
 import { useTypedSelector } from 'hooks/useTypedSelector'
 import { selectUser } from 'store/selectors/userSelectors'
 
@@ -11,7 +11,7 @@ function SignInPage() {
 	const { id } = useTypedSelector(selectUser)
 
 	if (id) {
-		return <Navigate to={HOME_PAGE_ROUTE} />
+		return <Navigate to={`${PROFILE_PAGE_ROUTE}/${id}`} />
 	}
 
 	return (
