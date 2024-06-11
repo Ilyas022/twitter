@@ -28,7 +28,6 @@ export const signUpUser = async (data: FormData) => {
 		})
 
 		const userFields = await getDoc(ref)
-
 		if (userFields.exists()) {
 			const {
 				birthDate,

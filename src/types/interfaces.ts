@@ -1,3 +1,5 @@
+import { DocumentReference, Timestamp } from 'firebase/firestore'
+
 interface ThemeColors {
 	primary: string
 	secondary: string
@@ -31,4 +33,37 @@ export type UserData = {
 	surname: string
 	tag: string
 	uid: string
+}
+
+export interface TweetResponse {
+	author: DocumentReference
+	createdAt: Timestamp
+	likes: DocumentReference[]
+	imageUrl: string | null
+	text: string
+}
+
+export interface AuthorType {
+	id: string
+	tag: string
+	surname: string
+	name: string
+}
+
+export interface User {
+	birthDate: Timestamp
+	email: string
+	name: string
+	phone: string
+	surname: string
+	tag: string
+}
+
+export interface TweetType {
+	text: string
+	createdAt: Timestamp
+	author: AuthorType
+	likes: DocumentReference[]
+	imageUrl: string | null
+	id: string
 }

@@ -1,9 +1,11 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import Heart from 'assets/icons/heartIcon.svg?react'
+import HeartActive from 'assets/icons/heartIconActive.svg?react'
 import Options from 'assets/icons/optionsIcon.svg?react'
 import {
 	getBorders,
+	getBordersRadii,
 	getColors,
 	getFontWeights,
 	getFonts,
@@ -13,6 +15,7 @@ import {
 } from 'utils/themeGetters'
 
 export const Tweet = styled.div`
+	position: relative;
 	display: flex;
 	gap: ${(props) => getGaps(props, 0)};
 	padding: ${(props) => getIndents(props, 1, 2)} ${(props) => getIndents(props, 5, -5)}
@@ -64,6 +67,13 @@ export const TweetDescription = styled.p`
 	margin-bottom: ${(props) => getIndents(props, 3)};
 `
 
+export const TweetImage = styled.img`
+	border-radius: ${(props) => getBordersRadii(props, 4, 12)};
+	width: ${(props) => getSizes(props, 12, 79)};
+	height: ${(props) => getSizes(props, 10, 8)};
+	margin-bottom: ${(props) => getIndents(props, 3, 2)};
+`
+
 export const LikeCounter = styled.div`
 	display: flex;
 	align-items: center;
@@ -72,14 +82,25 @@ export const LikeCounter = styled.div`
 	color: ${(props) => getColors(props).text};
 `
 
-export const LikeButton = styled.button`
+export const LikeButton = styled.button<{ $isLiked: boolean }>`
 	cursor: pointer;
+
 	&:hover {
 		color: ${(props) => getColors(props).error};
 	}
+
+	${({ $isLiked }) =>
+		$isLiked &&
+		css`
+			color: ${(props) => getColors(props).error};
+		`}
 `
 
 export const LikeIcon = styled(Heart)`
+	width: ${(props) => getSizes(props, 0)};
+	height: ${(props) => getSizes(props, 0)};
+`
+export const LikeIconActive = styled(HeartActive)`
 	width: ${(props) => getSizes(props, 0)};
 	height: ${(props) => getSizes(props, 0)};
 `
@@ -89,6 +110,24 @@ export const LikeNumber = styled.p``
 export const OptionsButton = styled.button`
 	width: ${(props) => getSizes(props, 0, -7)};
 	height: ${(props) => getSizes(props, 0, -20)};
+	margin-left: auto;
+	width: ${(props) => getSizes(props, 0, -7)};
+	height: ${(props) => getSizes(props, 0, -4)};
+	font-size: 0;
+`
+
+export const OptionsPopUp = styled.div`
+	position: absolute;
+	top: ${(props) => getSizes(props, 1, 8)};
+	right: 0px;
+	padding: ${(props) => getIndents(props, 3)};
+	border: ${(props) => getBorders(props, 0)} solid ${(props) => getColors(props).border};
+	border-radius: ${(props) => getBordersRadii(props, 4)};
+`
+
+export const OptionsItem = styled.button`
+	font-size: ${(props) => getFonts(props, 1)};
+	color: ${(props) => getColors(props).error};
 `
 
 export const OptionsIcon = styled(Options)`
