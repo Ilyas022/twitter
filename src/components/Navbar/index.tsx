@@ -1,7 +1,10 @@
+import { getAuth } from 'firebase/auth'
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import defaultUserIcon from 'assets/images/defaultUserIcon.png'
+import { AUTH_PAGE_ROUTE } from 'constants/routes'
+import { useActions } from 'hooks/useActions'
 import { useTypedSelector } from 'hooks/useTypedSelector'
 import { selectUser } from 'store/selectors/userSelectors'
 
@@ -22,6 +25,15 @@ import {
 function Navbar() {
 	const { pathname } = useLocation()
 	const { tag } = useTypedSelector(selectUser)
+	const auth = getAuth()
+	const { unSetUser } = useActions()
+	const navigate = useNavigate()
+
+	const handleLogOutClick = () => {
+		auth.signOut()
+		unSetUser()
+		navigate(AUTH_PAGE_ROUTE)
+	}
 
 	return (
 		<NavbarItem>
@@ -45,6 +57,7 @@ function Navbar() {
 					<ProfileCarTag>@bobur_mavlonov</ProfileCarTag>
 				</ProfileCardInfo>
 			</ProfileCard>
+			<Button onClick={handleLogOutClick}>Log out</Button>
 		</NavbarItem>
 	)
 }

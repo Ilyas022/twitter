@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom'
 
-import { HOME_PAGE_ROUTE } from 'constants/routes'
+import { PROFILE_PAGE_ROUTE } from 'constants/routes'
 import { useTypedSelector } from 'hooks/useTypedSelector'
 import { selectUser } from 'store/selectors/userSelectors'
 
@@ -8,10 +8,10 @@ import Form from './SignUpPageForm'
 import { Container, LogoIcon, Page, Title } from './styled'
 
 function SignUpPage() {
-	const { id } = useTypedSelector(selectUser)
+	const { id, tag } = useTypedSelector(selectUser)
 
 	if (id) {
-		return <Navigate to={HOME_PAGE_ROUTE} />
+		return <Navigate to={`${PROFILE_PAGE_ROUTE}/${tag.slice(1)}`} />
 	}
 
 	return (

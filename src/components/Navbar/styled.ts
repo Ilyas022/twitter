@@ -85,6 +85,7 @@ export const Button = styled.button`
 export const ProfileCard = styled.div`
 	display: flex;
 	gap: ${(props) => getGaps(props, 5, -3)};
+	margin-bottom: ${(props) => getIndents(props, 5)};
 `
 
 export const ProfileCardIcon = styled.img`

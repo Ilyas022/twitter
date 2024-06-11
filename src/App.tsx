@@ -22,7 +22,7 @@ function App() {
 			<Route path={SIGNUP_PAGE_ROUTE} element={<SignUpPage />} />
 			<Route element={<PrivateRoute />}>
 				<Route path={HOME_PAGE_ROUTE} element={<HomePage />} />
-				<Route path={PROFILE_PAGE_ROUTE} element={<ProfilePage />} />
+				<Route path={`${PROFILE_PAGE_ROUTE}/:id`} element={<ProfilePage />} />
 			</Route>
 		</Routes>
 	)

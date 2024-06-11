@@ -29,6 +29,18 @@ const userSlice = createSlice({
 		setUser: (state, action: PayloadAction<UserSlice>) => {
 			return { ...state, ...action.payload }
 		},
+		unSetUser: () => {
+			return {
+				id: '',
+				token: '',
+				name: '',
+				surname: '',
+				birthDate: 0,
+				phone: '',
+				email: '',
+				tag: '',
+			}
+		},
 	},
 })
 
