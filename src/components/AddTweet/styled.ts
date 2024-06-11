@@ -69,6 +69,14 @@ export const AddTweetBtn = styled.button`
 	&:hover {
 		background-color: ${(props) => getColors(props).hover};
 	}
+
+	&:disabled {
+		background-color: ${(props) => getColors(props).placeHolder};
+
+		&:hover {
+			background-color: ${(props) => getColors(props).popUpBg};
+		}
+	}
 `
 
 export const ControlsContainer = styled.div`

@@ -10,20 +10,20 @@ import {
 	where,
 } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
-import { useTypedSelector } from 'hooks/useTypedSelector'
-import { selectUser } from 'store/selectors/userSelectors'
 import { TweetResponse, TweetType, User } from 'types/interfaces'
 
-import { TweetsTitle, TweetsContainer } from './styled'
+import { TweetsTitle, TweetsContainer, NoTweetsText } from './styled'
 import TweetItem from './TweetItem'
 
 function Tweets() {
 	const [tweets, setTweets] = useState<TweetType[]>([])
 
-	const { id: userId } = useTypedSelector(selectUser)
+	const { id: userPageId } = useParams()
+
 	const db = getFirestore()
-	const userRef = doc(db, 'users', userId)
+	const userRef = doc(db, 'users', userPageId as string)
 	const messagesRef = collection(db, 'tweets')
 	const queryMessages = query(
 		messagesRef,
@@ -64,7 +64,7 @@ function Tweets() {
 		<>
 			<TweetsTitle>Tweets</TweetsTitle>
 			<TweetsContainer>
-				{tweets.length &&
+				{tweets.length ? (
 					tweets.map(({ id, text, createdAt, likes, author, imageUrl }) => (
 						<TweetItem
 							key={id}
@@ -75,7 +75,10 @@ function Tweets() {
 							likes={likes}
 							imageUrl={imageUrl}
 						/>
-					))}
+					))
+				) : (
+					<NoTweetsText>User doesn&apos;t have any tweets</NoTweetsText>
+				)}
 			</TweetsContainer>
 		</>
 	)

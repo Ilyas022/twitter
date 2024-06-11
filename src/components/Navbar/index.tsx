@@ -24,7 +24,7 @@ import {
 
 function Navbar() {
 	const { pathname } = useLocation()
-	const { tag } = useTypedSelector(selectUser)
+	const { id } = useTypedSelector(selectUser)
 	const auth = getAuth()
 	const { unSetUser } = useActions()
 	const navigate = useNavigate()
@@ -40,7 +40,7 @@ function Navbar() {
 			<LogoIcon />
 			<LinksContainer>
 				{navbarLinks.map(({ icon, title, path }) => {
-					const linkPath = title === 'Profile' ? `/profile/${tag.slice(1)}` : path
+					const linkPath = title === 'Profile' ? `/profile/${id}` : path
 					return (
 						<NavbarLink to={linkPath} key={title} $active={pathname === path}>
 							{React.createElement(icon)}

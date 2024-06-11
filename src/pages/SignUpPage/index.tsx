@@ -8,10 +8,10 @@ import Form from './SignUpPageForm'
 import { Container, LogoIcon, Page, Title } from './styled'
 
 function SignUpPage() {
-	const { id, tag } = useTypedSelector(selectUser)
+	const { id } = useTypedSelector(selectUser)
 
 	if (id) {
-		return <Navigate to={`${PROFILE_PAGE_ROUTE}/${tag.slice(1)}`} />
+		return <Navigate to={`${PROFILE_PAGE_ROUTE}/${id}`} />
 	}
 
 	return (

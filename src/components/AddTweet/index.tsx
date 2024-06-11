@@ -1,4 +1,11 @@
-import { addDoc, collection, doc, getFirestore, serverTimestamp } from 'firebase/firestore'
+import {
+	addDoc,
+	collection,
+	doc,
+	getFirestore,
+	serverTimestamp,
+	updateDoc,
+} from 'firebase/firestore'
 import { getDownloadURL, getStorage, ref } from 'firebase/storage'
 import { useState } from 'react'
 import { useUploadFile } from 'react-firebase-hooks/storage'
@@ -19,7 +26,7 @@ import {
 	UserIcon,
 } from './styled'
 
-function AddTweet() {
+function AddTweet({ numberOfTweets }: { numberOfTweets: number }) {
 	const [tweetText, setTweetText] = useState('')
 	const [image, setImage] = useState<File | null>(null)
 	const [uploadFile] = useUploadFile()
@@ -57,9 +64,15 @@ function AddTweet() {
 			likes: [],
 			imageUrl,
 		})
+
+		await updateDoc(userRef, {
+			numberOfTweets: numberOfTweets + 1,
+		})
 		setTweetText('')
 		setImage(null)
 	}
+
+	console.log(99, !!tweetText)
 	return (
 		<Item>
 			<UserIcon src={ImagePlaceHolder} />
@@ -74,7 +87,9 @@ function AddTweet() {
 						<AddImageIcon />
 						<Input type="file" onChange={handleImageChange} accept="image/*" />
 					</AddImageBtn>
-					<AddTweetBtn onClick={handleSubmit}>Tweet</AddTweetBtn>
+					<AddTweetBtn onClick={handleSubmit} disabled={!tweetText}>
+						Tweet
+					</AddTweetBtn>
 				</ControlsContainer>
 			</Container>
 		</Item>

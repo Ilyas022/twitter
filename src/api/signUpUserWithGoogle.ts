@@ -33,6 +33,10 @@ export const signUpUserWithGoogle = async () => {
 			tag: `@${name.toLowerCase()}_${surname.toLowerCase()}`,
 			phone: null,
 			email,
+			followers: 0,
+			following: 0,
+			numberOfTweets: 0,
+			about: '',
 		})
 
 		const userFields = await getDoc(ref)
@@ -45,6 +49,10 @@ export const signUpUserWithGoogle = async () => {
 				phone,
 				surname: userSurname,
 				tag,
+				followers,
+				following,
+				about,
+				numberOfTweets,
 			} = userFields.data() as UserData
 
 			return {
@@ -56,6 +64,10 @@ export const signUpUserWithGoogle = async () => {
 				birthDate: birthDate?.seconds || null,
 				id: userId,
 				token,
+				followers,
+				about,
+				following,
+				numberOfTweets,
 			}
 		}
 		return undefined

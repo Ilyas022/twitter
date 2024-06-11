@@ -25,6 +25,10 @@ export const signUpUser = async (data: FormData) => {
 			tag: `@${name.toLowerCase()}_${surname.toLowerCase()}`,
 			phone,
 			email,
+			followers: 0,
+			following: 0,
+			numberOfTweets: 0,
+			about: '',
 		})
 
 		const userFields = await getDoc(ref)

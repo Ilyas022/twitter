@@ -33,6 +33,10 @@ export type UserData = {
 	surname: string
 	tag: string
 	uid: string
+	numberOfTweets: number
+	followers: number
+	following: number
+	about: string
 }
 
 export interface TweetResponse {

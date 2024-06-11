@@ -8,10 +8,10 @@ import SignInPageForm from './SignInPageForm'
 import { Container, LogoIcon, Page, SignUp, Title } from './styled'
 
 function SignInPage() {
-	const { id, tag } = useTypedSelector(selectUser)
+	const { id } = useTypedSelector(selectUser)
 
 	if (id) {
-		return <Navigate to={`${PROFILE_PAGE_ROUTE}/${tag.slice(1)}`} />
+		return <Navigate to={`${PROFILE_PAGE_ROUTE}/${id}`} />
 	}
 
 	return (

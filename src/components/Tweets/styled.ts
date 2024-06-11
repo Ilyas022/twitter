@@ -20,3 +20,9 @@ export const TweetsTitle = styled.p`
 `
 
 export const TweetsContainer = styled.div``
+
+export const NoTweetsText = styled.p`
+	margin-top: ${(props) => getIndents(props, 3)};
+	font-size: ${(props) => getFonts(props, 3)};
+	text-align: center;
+`

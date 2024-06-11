@@ -44,13 +44,14 @@ function TweetItem({ author, createdAt, id, likes, text, imageUrl }: TweetType) 
 	const day = date.getDate()
 
 	const ref = useRef(null)
-	const { id: userId } = useTypedSelector(selectUser)
+	const { id: userId, numberOfTweets } = useTypedSelector(selectUser)
 
 	const db = getFirestore()
 	const tweetRef = doc(db, 'tweets', id)
 	const userRef = doc(db, 'users', userId)
 
 	const isLiked = !!likes.find((like) => like.id === userId)
+	const canDeleteTweet = author.id === userId
 
 	const handleLikeClick = () => {
 		if (isLiked) {
@@ -61,7 +62,11 @@ function TweetItem({ author, createdAt, id, likes, text, imageUrl }: TweetType) 
 	}
 
 	const handleDeleteClick = async () => {
-		await deleteDoc(doc(db, 'tweets', id))
+		if (canDeleteTweet) {
+			await deleteDoc(doc(db, 'tweets', id))
+
+			updateDoc(userRef, { numberOfTweets: numberOfTweets > 0 ? numberOfTweets - 1 : 0 })
+		}
 	}
 
 	const handleOptionsOpen = () => {
@@ -93,9 +98,11 @@ function TweetItem({ author, createdAt, id, likes, text, imageUrl }: TweetType) 
 					<LikeNumber>{likes.length}</LikeNumber>
 				</LikeCounter>
 			</TweetInner>
-			<OptionsButton onClick={handleOptionsOpen}>
-				<OptionsIcon />
-			</OptionsButton>
+			{canDeleteTweet && (
+				<OptionsButton onClick={handleOptionsOpen}>
+					<OptionsIcon />
+				</OptionsButton>
+			)}
 			{optionsOpened && (
 				<OptionsPopUp ref={ref}>
 					<OptionsItem onClick={handleDeleteClick}>Delete tweet</OptionsItem>

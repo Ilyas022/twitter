@@ -24,6 +24,7 @@ function App() {
 				<Route path={HOME_PAGE_ROUTE} element={<HomePage />} />
 				<Route path={`${PROFILE_PAGE_ROUTE}/:id`} element={<ProfilePage />} />
 			</Route>
+			<Route path="*" element={<p>not found page</p>} />
 		</Routes>
 	)
 }
