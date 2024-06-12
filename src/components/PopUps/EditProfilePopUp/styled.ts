@@ -9,12 +9,7 @@ import {
 	getFontWeights,
 } from 'utils/themeGetters'
 
-export const Form = styled.form`
-	max-height: 80vh;
-	overflow-y: auto;
-
-	scrollbar-width: thin;
-`
+export const Form = styled.form``
 
 export const Input = styled.input<{ $error: boolean }>`
 	display: block;

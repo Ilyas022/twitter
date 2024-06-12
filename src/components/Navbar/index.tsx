@@ -69,7 +69,7 @@ function Navbar() {
 			{popUpOpen &&
 				createPortal(
 					<PopUp handleClose={handleOpenPopUp} title="Add tweet">
-						<AddTweet numberOfTweets={numberOfTweets} />
+						<AddTweet onClose={handleOpenPopUp} numberOfTweets={numberOfTweets} />
 					</PopUp>,
 					document.body
 				)}

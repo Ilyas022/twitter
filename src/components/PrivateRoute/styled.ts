@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { getColors, getIndents, getSizes } from 'utils/themeGetters'
+import { getColors, getSizes } from 'utils/themeGetters'
 
 export const Wrapper = styled.main`
 	display: grid;
@@ -10,10 +10,6 @@ export const Wrapper = styled.main`
 	width: 100%;
 	max-width: ${(props) => getSizes(props, 16, 200)};
 	margin: 0 auto;
-
-	&:first-child {
-		margin-right: ${(props) => getIndents(props, 6, -2)};
-	}
 
 	& > :nth-child(2) {
 		position: relative;

@@ -62,6 +62,9 @@ export const Title = styled.p`
 `
 
 export const PopUpBody = styled.div`
+	max-height: 80vh;
+	overflow-y: auto;
+	scrollbar-width: thin;
 	display: flex;
 	flex-direction: column;
 	gap: ${(props) => getGaps(props, 2)};

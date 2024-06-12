@@ -25,8 +25,9 @@ import {
 	TextArea,
 	UserIcon,
 } from './styled'
+import { AddTweetProps } from './types'
 
-function AddTweet({ numberOfTweets }: { numberOfTweets: number }) {
+function AddTweet({ numberOfTweets, onClose }: AddTweetProps) {
 	const [tweetText, setTweetText] = useState('')
 	const [image, setImage] = useState<File | null>(null)
 	const [uploadFile] = useUploadFile()
@@ -70,6 +71,9 @@ function AddTweet({ numberOfTweets }: { numberOfTweets: number }) {
 		})
 		setTweetText('')
 		setImage(null)
+		if (onClose) {
+			onClose()
+		}
 	}
 
 	return (

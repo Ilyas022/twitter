@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 
 import Navbar from 'components/Navbar'
+import SearchBar from 'components/SearchBar'
 import { AUTH_PAGE_ROUTE } from 'constants/routes'
 import { useTypedSelector } from 'hooks/useTypedSelector'
 import { selectUser } from 'store/selectors/userSelectors'
@@ -27,7 +28,7 @@ function PrivateRoute() {
 		<Wrapper>
 			<Navbar />
 			<Outlet />
-			<p>search</p>
+			<SearchBar />
 		</Wrapper>
 	)
 }

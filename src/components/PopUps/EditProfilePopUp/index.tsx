@@ -11,8 +11,9 @@ import { UserData } from 'types/interfaces'
 
 import { schema } from './config'
 import { Button, Form, Input } from './styled'
+import { EditProfilePopUpProps } from './types'
 
-function EditProfilePopUp() {
+function EditProfilePopUp({ onClose }: EditProfilePopUpProps) {
 	const {
 		register,
 		handleSubmit,
@@ -61,6 +62,7 @@ function EditProfilePopUp() {
 			tag,
 			about,
 		})
+		onClose()
 	})
 
 	return (

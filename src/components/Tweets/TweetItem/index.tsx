@@ -12,7 +12,6 @@ import defaultUserIcon from 'assets/images/userIconLarge.png'
 import useOnClickOutside from 'hooks/useOnClickOutside'
 import { useTypedSelector } from 'hooks/useTypedSelector'
 import { selectUser } from 'store/selectors/userSelectors'
-import { TweetType } from 'types/interfaces'
 
 import {
 	Tweet,
@@ -36,8 +35,9 @@ import {
 	OptionsPopUp,
 	OptionsItem,
 } from './styled'
+import { TweetItemProps } from './types'
 
-function TweetItem({ author, createdAt, id, likes, text, imageUrl }: TweetType) {
+function TweetItem({ author, createdAt, id, likes, text, imageUrl, onClose }: TweetItemProps) {
 	const [optionsOpened, setOptionsOpened] = useState(false)
 	const date = createdAt.toDate()
 	const month = date.toLocaleString('en', { month: 'long' })
@@ -66,6 +66,9 @@ function TweetItem({ author, createdAt, id, likes, text, imageUrl }: TweetType) 
 			await deleteDoc(doc(db, 'tweets', id))
 
 			updateDoc(userRef, { numberOfTweets: numberOfTweets > 0 ? numberOfTweets - 1 : 0 })
+			if (onClose) {
+				onClose()
+			}
 		}
 	}
 

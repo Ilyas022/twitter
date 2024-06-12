@@ -85,7 +85,7 @@ function ProfilePage() {
 			{popUpOpen &&
 				createPortal(
 					<PopUp handleClose={handleOpenPopUp} title="Edit profile">
-						<EditProfilePopUp />
+						<EditProfilePopUp onClose={handleOpenPopUp} />
 					</PopUp>,
 					document.body
 				)}
