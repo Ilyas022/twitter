@@ -80,9 +80,11 @@ export const FollowingsItem = styled.p`
 
 export const FollowingsNumber = styled.span`
 	font-weight: ${(props) => getFontWeights(props, 3, 100)};
+	color: ${(props) => getColors(props).textColor};
 `
 export const FollowingsTitle = styled.span`
 	color: ${(props) => getColors(props).black};
+	color: ${(props) => getColors(props).textColor};
 	opacity: 0.6;
 `
 

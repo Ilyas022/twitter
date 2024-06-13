@@ -30,7 +30,7 @@ export const SeacrhContainer = styled.div`
 export const SeacrhInput = styled.input`
 	background-color: transparent;
 	font-size: ${(props) => getFonts(props, 1, 2)};
-	color: ${(props) => getColors(props).text};
+	color: ${(props) => getColors(props).textColor};
 	margin-right: auto;
 `
 
@@ -42,6 +42,7 @@ export const LikeIcon = styled(Search)`
 export const TweetsContainer = styled.div`
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	gap: ${(props) => getGaps(props, 0, 2)};
 	min-height: ${(props) => getSizes(props, 5)};
 	background-color: ${(props) => getColors(props).secondary};

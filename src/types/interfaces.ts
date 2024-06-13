@@ -11,6 +11,8 @@ interface ThemeColors {
 	white: string
 	black: string
 	text: string
+	bg: string
+	textColor: string
 }
 
 export interface Theme {

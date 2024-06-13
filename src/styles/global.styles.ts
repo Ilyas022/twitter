@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
+import { getColors } from 'utils/themeGetters'
+
 export const GlobalStyles = createGlobalStyle`
 	*{
 		padding: 0;
@@ -48,6 +50,8 @@ export const GlobalStyles = createGlobalStyle`
 		min-height: 100%;
 		display: flex;
 		flex-direction: column;
+		background-color: ${(props) => getColors(props).bg};
+		color: ${(props) => getColors(props).textColor};
 		
 		> main {
 		flex: 1 0 auto;

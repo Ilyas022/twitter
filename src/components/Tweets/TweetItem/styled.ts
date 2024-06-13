@@ -131,5 +131,5 @@ export const OptionsItem = styled.button`
 `
 
 export const OptionsIcon = styled(Options)`
-	color: ${(props) => getColors(props).black};
+	color: ${(props) => getColors(props).textColor};
 `

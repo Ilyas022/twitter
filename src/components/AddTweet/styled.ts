@@ -65,6 +65,7 @@ export const AddTweetBtn = styled.button`
 	line-height: 100%;
 	color: ${(props) => getColors(props).white};
 	background-color: ${(props) => getColors(props).primary};
+	border: ${(props) => getBorders(props, 0)} solid ${(props) => getColors(props).border};
 	transition: background-color 0.3s;
 
 	&:hover {
@@ -75,7 +76,7 @@ export const AddTweetBtn = styled.button`
 		background-color: ${(props) => getColors(props).placeHolder};
 
 		&:hover {
-			background-color: ${(props) => getColors(props).popUpBg};
+			background-color: ${(props) => getColors(props).secondary};
 		}
 	}
 `

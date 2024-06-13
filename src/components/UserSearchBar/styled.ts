@@ -30,7 +30,7 @@ export const SeacrhContainer = styled.div`
 export const SeacrhInput = styled.input`
 	background-color: transparent;
 	font-size: ${(props) => getFonts(props, 1, 2)};
-	color: ${(props) => getColors(props).text};
+	color: ${(props) => getColors(props).textColor};
 	margin-right: auto;
 `
 

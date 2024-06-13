@@ -130,7 +130,7 @@ export const FooterLink = styled(Link)`
 	padding: ${(props) => getIndents(props, 2, 2)} 0;
 	text-align: center;
 	font-size: ${(props) => getFonts(props, 0, -1)};
-	color: ${(props) => getColors(props).black};
+	color: ${(props) => getColors(props).textColor};
 	white-space: nowrap;
 	transition: color 0.3s;
 

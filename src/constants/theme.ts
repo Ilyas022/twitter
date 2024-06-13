@@ -27,9 +27,11 @@ export const colors = {
 	white: '#fff',
 	black: '#000',
 	text: '#536471',
+	bg: '#fff',
+	textColor: '#000',
 }
 
-export const theme: Theme = {
+export const light: Theme = {
 	fonts,
 	fontWeights,
 	colors,
@@ -39,4 +41,29 @@ export const theme: Theme = {
 	indents,
 	borders,
 	bordersRadii,
+}
+
+export const dark: Theme = {
+	fonts,
+	fontWeights,
+	lineHeights,
+	sizes,
+	gaps,
+	indents,
+	borders,
+	bordersRadii,
+	colors: {
+		primary: '#1DA1F2',
+		secondary: '#a2a2a2',
+		hover: '#1d82f2',
+		border: '#ffffff33',
+		placeHolder: '#0009',
+		popUpBg: '#000000b8',
+		error: '#f00',
+		white: '#fff',
+		black: '#000',
+		text: '#536471',
+		textColor: '#fff',
+		bg: '#000',
+	},
 }
