@@ -26,4 +26,18 @@ export const schema = yup.object({
 	tag: yup.string().required('Tag is required'),
 	about: yup.string().trim('Remove whitespaces before and after').strict(true),
 	email: yup.string().required('Email is required').email('Invalid email address'),
+	image: yup
+		.mixed()
+		.test(
+			'imageFormat',
+			'Only JPEG, PNG, GIF, BMP, or SVG files are allowed',
+			(value?: FileList) => {
+				const item = value && value[0]
+				if (item) {
+					const supportedFormats = ['jpeg', 'png', 'gif', 'bmp', 'svg+xml']
+					return supportedFormats.includes(item.type.split('/')[1])
+				}
+				return true
+			}
+		),
 })

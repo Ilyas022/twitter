@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 
+import AddImage from 'assets/icons/placeHolderImageIcon.svg?react'
 import {
 	getIndents,
 	getColors,
@@ -7,6 +8,8 @@ import {
 	getBorders,
 	getBordersRadii,
 	getFontWeights,
+	getSizes,
+	getGaps,
 } from 'utils/themeGetters'
 
 export const Form = styled.form``
@@ -53,3 +56,28 @@ export const Button = styled.button`
 		}
 	}
 `
+
+export const ImageContainer = styled.label`
+	display: flex;
+	gap: ${(props) => getGaps(props, 4)};
+`
+
+export const ImageText = styled.p``
+
+export const AddImageBtn = styled.label`
+	width: ${(props) => getSizes(props, 0)};
+	height: ${(props) => getSizes(props, 0)};
+	cursor: pointer;
+	color: ${(props) => getColors(props).primary};
+	transition: color 0.3s;
+
+	&:hover {
+		color: ${(props) => getColors(props).hover};
+	}
+`
+
+export const ImageInput = styled.input`
+	display: none;
+`
+
+export const AddImageIcon = styled(AddImage)``

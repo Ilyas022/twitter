@@ -1,7 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { getFirestore, doc, updateDoc } from 'firebase/firestore'
+import { getDownloadURL, getStorage, ref } from 'firebase/storage'
 import { useEffect } from 'react'
 import { useDocumentDataOnce } from 'react-firebase-hooks/firestore'
+import { useUploadFile } from 'react-firebase-hooks/storage'
 import { useForm } from 'react-hook-form'
 
 import FormItem from 'components/FormItem'
@@ -28,6 +30,8 @@ function EditProfilePopUp({ onClose }: EditProfilePopUpProps) {
 	const db = getFirestore()
 	const userRef = doc(db, 'users', id as string)
 	const [value] = useDocumentDataOnce(userRef)
+	const storage = getStorage()
+	const [uploadFile] = useUploadFile()
 
 	useEffect(() => {
 		if (value) {
@@ -51,7 +55,17 @@ function EditProfilePopUp({ onClose }: EditProfilePopUpProps) {
 		}
 	}, [value])
 	const onSubmit = handleSubmit(async (data) => {
-		const { birthDate, email, name, phone, surname, tag, about } = data
+		const { birthDate, email, name, phone, surname, tag, about, image } = data
+
+		let imageUrl = null
+		const imageItem = image[0]
+
+		if (imageItem) {
+			const storageRef = ref(storage, `images/${imageItem.name}`)
+			const result = await uploadFile(storageRef, imageItem)
+			const url = await getDownloadURL(result!.ref)
+			imageUrl = url
+		}
 
 		await updateDoc(userRef, {
 			birthDate,
@@ -61,6 +75,7 @@ function EditProfilePopUp({ onClose }: EditProfilePopUpProps) {
 			surname,
 			tag,
 			about,
+			imageUrl,
 		})
 		onClose()
 	})
@@ -107,6 +122,15 @@ function EditProfilePopUp({ onClose }: EditProfilePopUpProps) {
 					$error={!!errors.email?.message}
 					placeholder="Add your email"
 					{...register('email')}
+				/>
+			</FormItem>
+			<FormItem errorMessage={errors.image?.message}>
+				<Input
+					type="file"
+					accept="image/*"
+					$error={!!errors.image?.message}
+					placeholder="Add your image"
+					{...register('image')}
 				/>
 			</FormItem>
 			<Button type="submit" disabled={!isDirty || !isValid}>

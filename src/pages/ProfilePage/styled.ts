@@ -43,7 +43,8 @@ export const UserInfoContainer = styled.div`
 
 export const UserImage = styled.img`
 	position: absolute;
-	position: absolute;
+	border-radius: 50%;
+	object-fit: cover;
 	top: ${(props) => getSizes(props, 0, -94)};
 	left: ${(props) => getSizes(props, 0, -44)};
 	width: ${(props) => getSizes(props, 7, 10)};

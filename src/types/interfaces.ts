@@ -37,6 +37,7 @@ export type UserData = {
 	followers: number
 	following: number
 	about: string
+	imageUrl: string | null
 }
 
 export interface TweetResponse {

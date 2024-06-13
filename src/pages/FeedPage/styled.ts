@@ -2,6 +2,8 @@ import styled from 'styled-components'
 
 import { getIndents, getFonts } from 'utils/themeGetters'
 
+export const Page = styled.div``
+
 export const PageHeader = styled.div`
 	display: flex;
 	align-items: center;

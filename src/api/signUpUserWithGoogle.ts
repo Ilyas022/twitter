@@ -37,6 +37,7 @@ export const signUpUserWithGoogle = async () => {
 			following: 0,
 			numberOfTweets: 0,
 			about: '',
+			imageUrl: null,
 		})
 
 		const userFields = await getDoc(ref)
@@ -53,6 +54,7 @@ export const signUpUserWithGoogle = async () => {
 				following,
 				about,
 				numberOfTweets,
+				imageUrl,
 			} = userFields.data() as UserData
 
 			return {
@@ -68,6 +70,7 @@ export const signUpUserWithGoogle = async () => {
 				about,
 				following,
 				numberOfTweets,
+				imageUrl,
 			}
 		}
 		return undefined

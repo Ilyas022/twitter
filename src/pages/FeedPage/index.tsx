@@ -5,10 +5,11 @@ import { useCollection } from 'react-firebase-hooks/firestore'
 import AddTweet from 'components/AddTweet'
 import { ThemeToggler } from 'components/ThemeToggler'
 import Tweets from 'components/Tweets'
+import UserSearchBar from 'components/UserSearchBar'
 import { getTweetsWithAuthors } from 'src/api/getTweetsWithAuthors'
 import { TweetType } from 'types/interfaces'
 
-import { PageHeader, Title } from './styled'
+import { Page, PageHeader, Title } from './styled'
 
 function FeedPage() {
 	const db = getFirestore()
@@ -22,14 +23,17 @@ function FeedPage() {
 	}, [tweetsData])
 
 	return (
-		<div>
-			<PageHeader>
-				<Title>Home</Title>
-				<ThemeToggler />
-			</PageHeader>
-			<AddTweet />
-			<Tweets tweets={tweets} />
-		</div>
+		<>
+			<Page>
+				<PageHeader>
+					<Title>Home</Title>
+					<ThemeToggler />
+				</PageHeader>
+				<AddTweet />
+				<Tweets tweets={tweets} />
+			</Page>
+			<UserSearchBar />
+		</>
 	)
 }
 

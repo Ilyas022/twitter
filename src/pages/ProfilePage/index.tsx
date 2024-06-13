@@ -1,5 +1,5 @@
 import { collection, doc, getFirestore, orderBy, query, where } from 'firebase/firestore'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useCollection, useDocumentData } from 'react-firebase-hooks/firestore'
 import { Navigate, useParams } from 'react-router-dom'
@@ -10,8 +10,11 @@ import AddTweet from 'components/AddTweet'
 import PopUp from 'components/PopUp'
 import EditProfilePopUp from 'components/PopUps/EditProfilePopUp'
 import Tweets from 'components/Tweets'
+import TweetSearchBar from 'components/TweetSearchBar'
 import { NOT_FOUND_PAGE_ROUTE } from 'constants/routes'
+import { useTypedSelector } from 'hooks/useTypedSelector'
 import { getTweetsWithAuthors } from 'src/api/getTweetsWithAuthors'
+import { selectUser } from 'store/selectors/userSelectors'
 import { TweetType, UserData } from 'types/interfaces'
 
 import {
@@ -34,6 +37,7 @@ import {
 function ProfilePage() {
 	const { id } = useParams()
 	const [popUpOpen, setPopUpOpen] = useState(false)
+	const { id: userId } = useTypedSelector(selectUser)
 
 	const db = getFirestore()
 	const userRef = doc(db, 'users', id as string)
@@ -46,6 +50,10 @@ function ProfilePage() {
 	)
 	const [tweets, setTweets] = useState<TweetType[]>()
 
+	const IsOnwner = useMemo(() => {
+		return id === userId
+	}, [])
+
 	useEffect(() => {
 		getTweetsWithAuthors(tweetsData, setTweets)
 	}, [tweetsData])
@@ -56,46 +64,49 @@ function ProfilePage() {
 	if (!userData) {
 		return <Navigate to={NOT_FOUND_PAGE_ROUTE} />
 	}
-	const { name, surname, tag, followers, following, about } = userData as UserData
+	const { name, surname, tag, followers, following, about, imageUrl } = userData as UserData
 
 	const handleOpenPopUp = () => {
 		setPopUpOpen((prev) => !prev)
 	}
 
 	return (
-		<Page>
-			<Title>{name}</Title>
-			<TweetsCounter>{tweets?.length || 0} Tweets</TweetsCounter>
-			<img src={profileBgImage} alt="" />
-			<UserInfo>
-				<UserInfoContainer>
-					<UserImage src={defaultUserIcon} />
-					<UserName>{`${name} ${surname}`}</UserName>
-					<UserTag>{tag}</UserTag>
-					{about && <UserDescription>{about}</UserDescription>}
-					<FollowingsInfo>
-						<FollowingsItem>
-							<FollowingsNumber>{following || 0}</FollowingsNumber>
-							<FollowingsTitle>Following</FollowingsTitle>
-						</FollowingsItem>
-						<FollowingsItem>
-							<FollowingsNumber>{followers || 0}</FollowingsNumber>
-							<FollowingsTitle>Followers</FollowingsTitle>
-						</FollowingsItem>
-					</FollowingsInfo>
-				</UserInfoContainer>
-				<EditProfileBtn onClick={handleOpenPopUp}>Edit profile</EditProfileBtn>
-			</UserInfo>
-			<AddTweet />
-			<Tweets tweets={tweets} />
-			{popUpOpen &&
-				createPortal(
-					<PopUp handleClose={handleOpenPopUp} title="Edit profile">
-						<EditProfilePopUp onClose={handleOpenPopUp} />
-					</PopUp>,
-					document.body
-				)}
-		</Page>
+		<>
+			<Page>
+				<Title>{name}</Title>
+				<TweetsCounter>{tweets?.length || 0} Tweets</TweetsCounter>
+				<img src={profileBgImage} alt="" />
+				<UserInfo>
+					<UserInfoContainer>
+						<UserImage src={imageUrl || defaultUserIcon} />
+						<UserName>{`${name} ${surname}`}</UserName>
+						<UserTag>{tag}</UserTag>
+						{about && <UserDescription>{about}</UserDescription>}
+						<FollowingsInfo>
+							<FollowingsItem>
+								<FollowingsNumber>{following || 0}</FollowingsNumber>
+								<FollowingsTitle>Following</FollowingsTitle>
+							</FollowingsItem>
+							<FollowingsItem>
+								<FollowingsNumber>{followers || 0}</FollowingsNumber>
+								<FollowingsTitle>Followers</FollowingsTitle>
+							</FollowingsItem>
+						</FollowingsInfo>
+					</UserInfoContainer>
+					{IsOnwner && <EditProfileBtn onClick={handleOpenPopUp}>Edit profile</EditProfileBtn>}
+				</UserInfo>
+				{IsOnwner && <AddTweet />}
+				<Tweets tweets={tweets} />
+				{popUpOpen &&
+					createPortal(
+						<PopUp handleClose={handleOpenPopUp} title="Edit profile">
+							<EditProfilePopUp onClose={handleOpenPopUp} />
+						</PopUp>,
+						document.body
+					)}
+			</Page>
+			<TweetSearchBar />
+		</>
 	)
 }
 

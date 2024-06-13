@@ -49,8 +49,10 @@ function Navbar() {
 			<LinksContainer>
 				{navbarLinks.map(({ icon, title, path }) => {
 					const linkPath = title === 'Profile' ? `/profile/${id}` : path
+					const active = title === 'Profile' ? `${pathname}` === `${path}/${id}` : pathname === path
+
 					return (
-						<NavbarLink to={linkPath} key={title} $active={pathname === path}>
+						<NavbarLink to={linkPath} key={title} $active={active}>
 							{React.createElement(icon)}
 							<p>{title}</p>
 						</NavbarLink>

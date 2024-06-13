@@ -29,6 +29,7 @@ export const signUpUser = async (data: FormData) => {
 			following: 0,
 			numberOfTweets: 0,
 			about: '',
+			imageUrl: null,
 		})
 
 		const userFields = await getDoc(ref)
@@ -44,6 +45,7 @@ export const signUpUser = async (data: FormData) => {
 				followers,
 				following,
 				numberOfTweets,
+				imageUrl,
 			} = userFields.data() as UserData
 
 			return {
@@ -59,6 +61,7 @@ export const signUpUser = async (data: FormData) => {
 				followers,
 				following,
 				numberOfTweets,
+				imageUrl,
 			}
 		}
 

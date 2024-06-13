@@ -22,7 +22,7 @@ import {
 } from './styled'
 import { AuthorType, TweetStateType, TweetType } from './types'
 
-function SearchBar() {
+function TweetSearchBar() {
 	const [search, setSearch] = useState('')
 	const debouncedSearch = useDebounce(search)
 	const [popUpOpen, setPopUpOpen] = useState(false)
@@ -137,4 +137,4 @@ function SearchBar() {
 	)
 }
 
-export default SearchBar
+export default TweetSearchBar
