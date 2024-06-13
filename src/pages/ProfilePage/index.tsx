@@ -1,7 +1,7 @@
-import { collection, doc, getFirestore, query, where } from 'firebase/firestore'
-import { useState } from 'react'
+import { collection, doc, getFirestore, orderBy, query, where } from 'firebase/firestore'
+import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { useCollectionData, useDocumentData } from 'react-firebase-hooks/firestore'
+import { useCollection, useDocumentData } from 'react-firebase-hooks/firestore'
 import { Navigate, useParams } from 'react-router-dom'
 
 import profileBgImage from 'assets/images/profileBgImage.png'
@@ -11,7 +11,8 @@ import PopUp from 'components/PopUp'
 import EditProfilePopUp from 'components/PopUps/EditProfilePopUp'
 import Tweets from 'components/Tweets'
 import { NOT_FOUND_PAGE_ROUTE } from 'constants/routes'
-import { UserData } from 'types/interfaces'
+import { getTweetsWithAuthors } from 'src/api/getTweetsWithAuthors'
+import { TweetType, UserData } from 'types/interfaces'
 
 import {
 	EditProfileBtn,
@@ -40,9 +41,14 @@ function ProfilePage() {
 
 	const tweetsRef = collection(db, 'tweets')
 
-	const [tweetsData, tweetsLoading] = useCollectionData(
-		query(tweetsRef, where('author', '==', userRef))
+	const [tweetsData, tweetsLoading] = useCollection(
+		query(tweetsRef, where('author', '==', userRef), orderBy('createdAt', 'desc'))
 	)
+	const [tweets, setTweets] = useState<TweetType[]>()
+
+	useEffect(() => {
+		getTweetsWithAuthors(tweetsData, setTweets)
+	}, [tweetsData])
 
 	if ((userLoading && tweetsLoading) || userLoading || tweetsLoading) {
 		return <div>loading</div>
@@ -50,7 +56,7 @@ function ProfilePage() {
 	if (!userData) {
 		return <Navigate to={NOT_FOUND_PAGE_ROUTE} />
 	}
-	const { name, surname, tag, followers, following, numberOfTweets, about } = userData as UserData
+	const { name, surname, tag, followers, following, about } = userData as UserData
 
 	const handleOpenPopUp = () => {
 		setPopUpOpen((prev) => !prev)
@@ -59,7 +65,7 @@ function ProfilePage() {
 	return (
 		<Page>
 			<Title>{name}</Title>
-			<TweetsCounter>{tweetsData?.length || 0} Tweets</TweetsCounter>
+			<TweetsCounter>{tweets?.length || 0} Tweets</TweetsCounter>
 			<img src={profileBgImage} alt="" />
 			<UserInfo>
 				<UserInfoContainer>
@@ -80,8 +86,8 @@ function ProfilePage() {
 				</UserInfoContainer>
 				<EditProfileBtn onClick={handleOpenPopUp}>Edit profile</EditProfileBtn>
 			</UserInfo>
-			<AddTweet numberOfTweets={numberOfTweets} />
-			<Tweets />
+			<AddTweet />
+			<Tweets tweets={tweets} />
 			{popUpOpen &&
 				createPortal(
 					<PopUp handleClose={handleOpenPopUp} title="Edit profile">

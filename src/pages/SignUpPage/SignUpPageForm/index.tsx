@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import FormItem from 'components/FormItem'
 import Select from 'components/Select'
-import { AUTH_PAGE_ROUTE, HOME_PAGE_ROUTE } from 'constants/routes'
+import { AUTH_PAGE_ROUTE, FEED_PAGE_ROUTE } from 'constants/routes'
 import { useActions } from 'hooks/useActions'
 import { signUpUser } from 'src/api/signUpUser'
 
@@ -34,7 +34,7 @@ function SignUpPageForm() {
 
 		if (userData) {
 			setUser(userData)
-			navigate(HOME_PAGE_ROUTE)
+			navigate(FEED_PAGE_ROUTE)
 		}
 	})
 

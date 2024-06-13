@@ -9,6 +9,7 @@ import {
 import { useRef, useState } from 'react'
 
 import defaultUserIcon from 'assets/images/userIconLarge.png'
+import { useActions } from 'hooks/useActions'
 import useOnClickOutside from 'hooks/useOnClickOutside'
 import { useTypedSelector } from 'hooks/useTypedSelector'
 import { selectUser } from 'store/selectors/userSelectors'
@@ -45,6 +46,7 @@ function TweetItem({ author, createdAt, id, likes, text, imageUrl, onClose }: Tw
 
 	const ref = useRef(null)
 	const { id: userId, numberOfTweets } = useTypedSelector(selectUser)
+	const { decTweetsNumber } = useActions()
 
 	const db = getFirestore()
 	const tweetRef = doc(db, 'tweets', id)
@@ -65,7 +67,8 @@ function TweetItem({ author, createdAt, id, likes, text, imageUrl, onClose }: Tw
 		if (canDeleteTweet) {
 			await deleteDoc(doc(db, 'tweets', id))
 
-			updateDoc(userRef, { numberOfTweets: numberOfTweets > 0 ? numberOfTweets - 1 : 0 })
+			updateDoc(userRef, { numberOfTweets: numberOfTweets - 1 })
+			decTweetsNumber()
 			if (onClose) {
 				onClose()
 			}

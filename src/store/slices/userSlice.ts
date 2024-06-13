@@ -40,6 +40,12 @@ const userSlice = createSlice({
 		unSetUser: () => {
 			return initialState
 		},
+		incTweetsNumber: (state) => {
+			return { ...state, numberOfTweets: state.numberOfTweets + 1 }
+		},
+		decTweetsNumber: (state) => {
+			return { ...state, numberOfTweets: state.numberOfTweets - 1 }
+		},
 	},
 })
 

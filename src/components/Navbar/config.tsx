@@ -1,7 +1,7 @@
 import {
 	BOOKMARKS_PAGE_ROUTE,
 	EXPLORE_PAGE_ROUTE,
-	HOME_PAGE_ROUTE,
+	FEED_PAGE_ROUTE,
 	LISTS_PAGE_ROUTE,
 	MESSAGES_PAGE_ROUTE,
 	MORE_PAGE_ROUTE,
@@ -24,7 +24,7 @@ export const navbarLinks = [
 	{
 		icon: HomeIcon,
 		title: 'Home',
-		path: HOME_PAGE_ROUTE,
+		path: FEED_PAGE_ROUTE,
 	},
 	{
 		icon: ExploreIcon,

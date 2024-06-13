@@ -27,7 +27,7 @@ import {
 
 function Navbar() {
 	const { pathname } = useLocation()
-	const { id, numberOfTweets } = useTypedSelector(selectUser)
+	const { id } = useTypedSelector(selectUser)
 	const auth = getAuth()
 	const { unSetUser } = useActions()
 	const navigate = useNavigate()
@@ -69,7 +69,7 @@ function Navbar() {
 			{popUpOpen &&
 				createPortal(
 					<PopUp handleClose={handleOpenPopUp} title="Add tweet">
-						<AddTweet onClose={handleOpenPopUp} numberOfTweets={numberOfTweets} />
+						<AddTweet onClose={handleOpenPopUp} />
 					</PopUp>,
 					document.body
 				)}

@@ -1,4 +1,4 @@
-export const HOME_PAGE_ROUTE = `/`
+export const FEED_PAGE_ROUTE = `/`
 export const AUTH_PAGE_ROUTE = `/auth`
 export const SIGNUP_PAGE_ROUTE = `/signup`
 export const SIGNIN_PAGE_ROUTE = `/signin`

@@ -40,6 +40,10 @@ export const signUpUser = async (data: FormData) => {
 				phone: userPhone,
 				surname: userSurname,
 				tag,
+				about,
+				followers,
+				following,
+				numberOfTweets,
 			} = userFields.data() as UserData
 
 			return {
@@ -51,6 +55,10 @@ export const signUpUser = async (data: FormData) => {
 				birthDate: birthDate?.seconds || null,
 				id: userId,
 				token,
+				about,
+				followers,
+				following,
+				numberOfTweets,
 			}
 		}
 

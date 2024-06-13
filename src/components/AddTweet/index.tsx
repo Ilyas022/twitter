@@ -11,6 +11,7 @@ import { useState } from 'react'
 import { useUploadFile } from 'react-firebase-hooks/storage'
 
 import ImagePlaceHolder from 'assets/images/defaultUserIcon.png'
+import { useActions } from 'hooks/useActions'
 import { useTypedSelector } from 'hooks/useTypedSelector'
 import { selectUser } from 'store/selectors/userSelectors'
 
@@ -27,12 +28,13 @@ import {
 } from './styled'
 import { AddTweetProps } from './types'
 
-function AddTweet({ numberOfTweets, onClose }: AddTweetProps) {
+function AddTweet({ onClose }: AddTweetProps) {
 	const [tweetText, setTweetText] = useState('')
 	const [image, setImage] = useState<File | null>(null)
 	const [uploadFile] = useUploadFile()
 
-	const { id } = useTypedSelector(selectUser)
+	const { id, numberOfTweets } = useTypedSelector(selectUser)
+	const { incTweetsNumber } = useActions()
 
 	const db = getFirestore()
 	const userRef = doc(db, 'users', id)
@@ -69,6 +71,7 @@ function AddTweet({ numberOfTweets, onClose }: AddTweetProps) {
 		await updateDoc(userRef, {
 			numberOfTweets: numberOfTweets + 1,
 		})
+		incTweetsNumber()
 		setTweetText('')
 		setImage(null)
 		if (onClose) {
