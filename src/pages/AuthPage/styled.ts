@@ -14,18 +14,29 @@ import {
 	getSizes,
 } from 'utils/themeGetters'
 
+const largeBreakPoint = '1600px'
+const bigBreakPoint = '1100px'
+
 export const Page = styled.main`
 	display: flex;
-	align-items: center;
 `
 
 export const Container = styled.div`
 	display: flex;
+	padding-right: ${(props) => getIndents(props, 3)};
 	gap: ${(props) => getGaps(props, 5)};
 	width: 100%;
 	max-width: ${(props) => getSizes(props, 16, 500)};
 	margin: 0 auto;
 	justify-content: center;
+
+	@media ${`(max-width: ${bigBreakPoint})`} {
+		padding: 0;
+	}
+
+	@media ${`(max-width: ${bigBreakPoint})`} {
+		padding: ${(props) => getIndents(props, 3)} ${(props) => getIndents(props, 3)} 0;
+	}
 `
 
 export const Info = styled.div`
@@ -38,6 +49,10 @@ export const Title = styled.h1`
 	font-weight: ${(props) => getFontWeights(props, 4)};
 	font-size: ${(props) => getFonts(props, 8, 28)};
 	margin-bottom: ${(props) => getIndents(props, 5, 6)};
+
+	@media ${`(max-width: ${largeBreakPoint})`} {
+		font-size: ${(props) => getFonts(props, 8, 6)};
+	}
 `
 
 export const SubTitle = styled.h2`
@@ -103,7 +118,16 @@ export const Login = styled.p`
 `
 
 export const AuthImg = styled.img`
-	height: calc(100vh - ${(props) => getSizes(props, 2, 1)});
+	height: calc(100vh - ${(props) => getSizes(props, 3, 14)});
+	max-height: ${(props) => getSizes(props, 14)};
+
+	@media ${`(max-width: ${largeBreakPoint})`} {
+		height: 80vh;
+	}
+
+	@media ${`(max-width: ${bigBreakPoint})`} {
+		display: none;
+	}
 `
 
 export const LogoIcon = styled(Logo)`
@@ -120,14 +144,16 @@ export const GoogleIcon = styled(Google)`
 
 export const Footer = styled.footer`
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	gap: ${(props) => getGaps(props, 2)};
 	width: 100%;
 	max-width: ${(props) => getSizes(props, 16)};
 	margin: 0 auto;
+	padding: ${(props) => getIndents(props, 3)};
 `
 
 export const FooterLink = styled(Link)`
-	padding: ${(props) => getIndents(props, 2, 2)} 0;
 	text-align: center;
 	font-size: ${(props) => getFonts(props, 0, -1)};
 	color: ${(props) => getColors(props).textColor};
