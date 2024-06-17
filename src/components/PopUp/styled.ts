@@ -15,14 +15,14 @@ const smallScreenEnd = '1024px'
 
 export const PopUpComp = styled.div`
 	position: fixed;
-	z-index: 5;
+	z-index: 10;
 	top: 0;
 	left: 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 100%;
-	height: 100%;
+	width: 100vw;
+	height: 100vh;
 	background-color: ${(props) => getColors(props).popUpBg};
 `
 

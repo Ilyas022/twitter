@@ -1,5 +1,5 @@
 import { collection, getDoc, getFirestore, query, where } from 'firebase/firestore'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useCollection } from 'react-firebase-hooks/firestore'
 
@@ -7,6 +7,8 @@ import Loader from 'components/Loader'
 import PopUp from 'components/PopUp'
 import TweetItem from 'components/Tweets/TweetItem'
 import { useDebounce } from 'hooks/useDebounce'
+import useOnClickOutside from 'hooks/useOnClickOutside'
+import { useScreenDetector } from 'hooks/useScreenDetector'
 import { TweetResponse, User } from 'types/interfaces'
 
 import {
@@ -28,6 +30,12 @@ function TweetSearchBar() {
 	const [popUpOpen, setPopUpOpen] = useState(false)
 	const [currentTweet, setCurrentTweet] = useState<TweetStateType>()
 	const [currentAuthor, setCurrentAuthor] = useState<AuthorType>()
+	const [containerOpened, setContainerOpened] = useState(false)
+
+	const inputRef = useRef(null)
+	const tweetsContainerRef = useRef(null)
+
+	const { isLargeDesktop } = useScreenDetector()
 
 	const db = getFirestore()
 	const tweetsRef = collection(db, 'tweets')
@@ -70,10 +78,12 @@ function TweetSearchBar() {
 		setSearch(e.target.value)
 	}
 
-	const handleTweetClick = (data: TweetType) => {
+	const handleTweetClick = (data: TweetType) => () => {
 		if (currentTweet?.id !== data.id) {
 			setCurrentTweet(data)
 		}
+
+		setContainerOpened(false)
 		setPopUpOpen(true)
 	}
 
@@ -81,11 +91,31 @@ function TweetSearchBar() {
 		setPopUpOpen((prev) => !prev)
 	}
 
+	const handleFocus = () => {
+		if (!isLargeDesktop) {
+			setContainerOpened(true)
+		}
+	}
+
+	useOnClickOutside(inputRef, (e) => {
+		let tweetsContainerClass = ''
+
+		if (tweetsContainerRef.current && e.target && inputRef.current) {
+			tweetsContainerClass = `.${(tweetsContainerRef.current as HTMLElement).className.split(' ')[0]}`
+
+			if (!(e?.target as HTMLElement).closest(tweetsContainerClass)) {
+				setContainerOpened(false)
+			}
+		}
+	})
+
 	return (
 		<SearchBarItem>
 			<SeacrhContainer>
 				<LikeIcon />
 				<SeacrhInput
+					ref={inputRef}
+					onFocus={handleFocus}
 					type="text"
 					value={search}
 					placeholder="Search Twitter"
@@ -94,7 +124,7 @@ function TweetSearchBar() {
 				{loading && <Loader />}
 			</SeacrhContainer>
 
-			<TweetsContainer>
+			<TweetsContainer ref={tweetsContainerRef} $opened={isLargeDesktop ? true : containerOpened}>
 				{values?.docs.length ? (
 					values.docs.slice(0, 5).map((tweet) => {
 						const { imageUrl, text } = tweet.data() as TweetResponse
@@ -102,9 +132,7 @@ function TweetSearchBar() {
 						return (
 							<SearchTweetItem
 								key={tweet.id}
-								onClick={() =>
-									handleTweetClick({ ...(tweet.data() as TweetResponse), id: tweet.id })
-								}
+								onClick={handleTweetClick({ ...(tweet.data() as TweetResponse), id: tweet.id })}
 							>
 								{imageUrl && <TweetImage src={imageUrl} />}
 								<TweetText>{text}</TweetText>

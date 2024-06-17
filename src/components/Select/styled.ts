@@ -49,7 +49,7 @@ export const Menu = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	background-color: ${(props) => getColors(props).white};
+	background-color: ${(props) => getColors(props).bg};
 	border: ${(props) => getBorders(props, 0)} solid ${(props) => getColors(props).border};
 	border-bottom-right-radius: ${(props) => getBordersRadii(props, 2, 2)};
 	border-bottom-left-radius: ${(props) => getBordersRadii(props, 2, 2)};

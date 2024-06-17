@@ -2,16 +2,26 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Logo from 'assets/icons/logoIcon.svg?react'
+import { device } from 'constants/breakpoints'
 import { getColors, getFontWeights, getFonts, getIndents, getSizes } from 'utils/themeGetters'
 
 export const Page = styled.main`
 	padding: ${(props) => getIndents(props, 6, 4)};
+
+	@media ${device.md} {
+		padding: ${(props) => getIndents(props, 2)};
+	}
 `
 
 export const Container = styled.div`
+	display: flex;
+	flex-direction: column;
 	width: ${(props) => getSizes(props, 10, 5)};
-	height: ${(props) => getSizes(props, 10, 28)};
 	margin: 0 auto;
+
+	@media ${device.sm} {
+		width: 90vw;
+	}
 `
 
 export const LogoIcon = styled(Logo)`
@@ -28,11 +38,10 @@ export const Title = styled.h1`
 `
 
 export const SignUp = styled(Link)`
-	display: block;
+	align-self: flex-end;
 	font-size: ${(props) => getFonts(props, 1, 2)};
 	text-align: right;
 	color: ${(props) => getColors(props).primary};
-	text-align: right;
 	transition: color 0.3s;
 
 	&:hover {

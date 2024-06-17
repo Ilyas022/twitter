@@ -1,5 +1,5 @@
 import { collection, getFirestore, query } from 'firebase/firestore'
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { useCollectionOnce } from 'react-firebase-hooks/firestore'
 import { useNavigate } from 'react-router-dom'
 
@@ -7,6 +7,8 @@ import defaultUserIcon from 'assets/images/userIconLarge.png'
 import Loader from 'components/Loader'
 import { PROFILE_PAGE_ROUTE } from 'constants/routes'
 import { useDebounce } from 'hooks/useDebounce'
+import useOnClickOutside from 'hooks/useOnClickOutside'
+import { useScreenDetector } from 'hooks/useScreenDetector'
 import { UserData } from 'types/interfaces'
 
 import {
@@ -23,8 +25,14 @@ import {
 
 function UserSearchBar() {
 	const [search, setSearch] = useState('')
+	const [containerOpened, setContainerOpened] = useState(false)
 	const debouncedSearch = useDebounce(search)
 	const navigate = useNavigate()
+
+	const inputRef = useRef(null)
+	const tweetsContainerRef = useRef(null)
+
+	const { isLargeDesktop } = useScreenDetector()
 
 	const db = getFirestore()
 	const usersRef = collection(db, 'users')
@@ -51,11 +59,31 @@ function UserSearchBar() {
 		navigate(`${PROFILE_PAGE_ROUTE}/${id}`)
 	}
 
+	const handleFocus = () => {
+		if (!isLargeDesktop) {
+			setContainerOpened(true)
+		}
+	}
+
+	useOnClickOutside(inputRef, (e) => {
+		let tweetsContainerClass = ''
+
+		if (tweetsContainerRef.current && e.target && inputRef.current) {
+			tweetsContainerClass = `.${(tweetsContainerRef.current as HTMLElement).className.split(' ')[0]}`
+
+			if (!(e?.target as HTMLElement).closest(tweetsContainerClass)) {
+				setContainerOpened(false)
+			}
+		}
+	})
+
 	return (
 		<SearchBarItem>
 			<SeacrhContainer>
 				<LikeIcon />
 				<SeacrhInput
+					ref={inputRef}
+					onFocus={handleFocus}
 					type="text"
 					value={search}
 					placeholder="Search User"
@@ -64,7 +92,7 @@ function UserSearchBar() {
 				{loading && <Loader />}
 			</SeacrhContainer>
 
-			<TweetsContainer>
+			<TweetsContainer ref={tweetsContainerRef} $opened={isLargeDesktop ? true : containerOpened}>
 				{users?.length ? (
 					users.slice(0, 5).map((user) => {
 						const { name, surname, tag, imageUrl } = user.data() as UserData

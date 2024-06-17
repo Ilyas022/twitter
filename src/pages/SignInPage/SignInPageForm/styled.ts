@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 
+import { device } from 'constants/breakpoints'
 import {
 	getBorders,
 	getBordersRadii,
@@ -15,6 +16,15 @@ export const Form = styled.form`
 	flex-direction: column;
 	gap: ${(props) => getGaps(props, 3, 1)};
 	margin-bottom: ${(props) => getIndents(props, 5)};
+
+	@media ${device.md} {
+		gap: 0;
+		margin-bottom: ${(props) => getIndents(props, 5)};
+
+		& > :last-child {
+			margin-top: ${(props) => getIndents(props, 2)};
+		}
+	}
 `
 
 export const Input = styled.input<{ $error: boolean }>`
@@ -22,9 +32,10 @@ export const Input = styled.input<{ $error: boolean }>`
 	width: 100%;
 	padding: ${(props) => getIndents(props, 4, 1)} ${(props) => getIndents(props, 3)};
 	margin-bottom: ${(props) => getIndents(props, 2, -1)};
-	color: ${(props) => getColors(props).placeHolder};
+	color: ${(props) => getColors(props).textColor};
 	font-size: ${(props) => getFonts(props, 1, 2)};
 	border: ${(props) => getBorders(props, 0)} solid ${(props) => getColors(props).border};
+	background-color: ${(props) => getColors(props).bg};
 	border-radius: ${(props) => getBordersRadii(props, 3, 2)};
 
 	${({ $error }) =>
@@ -32,6 +43,11 @@ export const Input = styled.input<{ $error: boolean }>`
 		css`
 			border-color: ${(props) => getColors(props).error};
 		`}
+
+	@media ${device.md} {
+		padding: ${(props) => getIndents(props, 3)};
+		margin-bottom: ${(props) => getIndents(props, 1)};
+	}
 `
 
 export const Button = styled.button`
@@ -40,6 +56,7 @@ export const Button = styled.button`
 	border-radius: ${(props) => getBordersRadii(props, 4, 68)};
 	text-align: center;
 	color: ${(props) => getColors(props).white};
+	border: ${(props) => getBorders(props, 0)} solid ${(props) => getColors(props).border};
 	font-weight: ${(props) => getFontWeights(props, 3, 100)};
 	font-size: ${(props) => getFonts(props, 1, 2)};
 	transition: background-color 0.3s;
@@ -52,7 +69,7 @@ export const Button = styled.button`
 		background-color: ${(props) => getColors(props).placeHolder};
 
 		&:hover {
-			background-color: ${(props) => getColors(props).popUpBg};
+			background-color: ${(props) => getColors(props).secondary};
 		}
 	}
 `

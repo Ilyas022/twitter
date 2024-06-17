@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
+import { device } from 'constants/breakpoints'
 import {
 	getBorders,
 	getBordersRadii,
@@ -17,12 +18,20 @@ export const SubTitle = styled.h2`
 	margin-bottom: ${(props) => getIndents(props, 4, 8)};
 	font-weight: ${(props) => getFontWeights(props, 3, 100)};
 	font-size: ${(props) => getFonts(props, 1, 2)};
+
+	@media ${device.md} {
+		margin-bottom: ${(props) => getIndents(props, 3)};
+	}
 `
 
 export const Text = styled.p`
 	margin-bottom: ${(props) => getIndents(props, 4, 8)};
 	font-size: ${(props) => getFonts(props, 1)};
 	line-height: ${(props) => getlineHeights(props, 6)};
+
+	@media ${device.md} {
+		margin-bottom: ${(props) => getIndents(props, 1)};
+	}
 `
 
 export const Form = styled.form`
@@ -40,12 +49,19 @@ export const Input = styled.input<{ $error: boolean }>`
 	font-size: ${(props) => getFonts(props, 1, 2)};
 	border: ${(props) => getBorders(props, 0)} solid ${(props) => getColors(props).border};
 	border-radius: ${(props) => getBordersRadii(props, 3, 2)};
+	background-color: ${(props) => getColors(props).bg};
+	color: ${(props) => getColors(props).textColor};
 
 	${({ $error }) =>
 		$error &&
 		css`
 			border-color: ${(props) => getColors(props).error};
 		`}
+
+	@media ${device.md} {
+		padding: ${(props) => getIndents(props, 3)};
+		margin-bottom: ${(props) => getIndents(props, 1)};
+	}
 `
 
 export const Button = styled.button`
@@ -55,6 +71,7 @@ export const Button = styled.button`
 	text-align: center;
 	color: ${(props) => getColors(props).white};
 	font-weight: ${(props) => getFontWeights(props, 3, 100)};
+	border: ${(props) => getBorders(props, 0)} solid ${(props) => getColors(props).border};
 	font-size: ${(props) => getFonts(props, 1, 2)};
 	transition: background-color 0.3s;
 
@@ -66,7 +83,7 @@ export const Button = styled.button`
 		background-color: ${(props) => getColors(props).placeHolder};
 
 		&:hover {
-			background-color: ${(props) => getColors(props).popUpBg};
+			background-color: ${(props) => getColors(props).secondary};
 		}
 	}
 `
@@ -93,5 +110,9 @@ export const SelectContainer = styled.div`
 
 	& > :first-child {
 		width: ${(props) => getSizes(props, 9, -38)};
+	}
+
+	@media ${device.md} {
+		margin-bottom: ${(props) => getIndents(props, 3)};
 	}
 `

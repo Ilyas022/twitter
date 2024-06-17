@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import Logo from 'assets/icons/logoIcon.svg?react'
 import Bookmarks from 'assets/icons/navbar/bookmarksIcon.svg?react'
@@ -20,8 +20,6 @@ import {
 	getSizes,
 } from 'utils/themeGetters'
 
-const pcTabletBreakPoint = '1000px'
-
 export const BookmarksIcon = styled(Bookmarks)``
 export const HomeIcon = styled(Home)``
 export const ExploreIcon = styled(Explore)``
@@ -31,12 +29,52 @@ export const MoreIcon = styled(More)``
 export const NotificationIcon = styled(Notification)``
 export const ProfileIcon = styled(Profile)``
 
-export const NavbarItem = styled.nav`
-	padding-top: ${(props) => getIndents(props, 4, 7)};
-	width: ${(props) => getSizes(props, 8, -25)};
+const pcTabletBreakPoint = '1000px'
+
+export const Menu = styled.div<{ $open?: boolean }>`
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	z-index: 5;
+	display: none;
+	width: 100%;
+	align-items: stretch;
+	background-color: ${({ theme }) => theme.colors.popUpBg};
+	transform: translateX(100%);
+	transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
 	@media ${`(max-width: ${pcTabletBreakPoint})`} {
-		display: none;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: ${(props) => getIndents(props, 1, 2)};
+		color: ${(props) => getColors(props).white};
+	}
+
+	${(props) =>
+		props.$open &&
+		css`
+			transform: translateX(0);
+		`}
+
+	> a {
+		text-align: center;
+		color: ${({ theme }) => theme.colors.white};
+		font-size: ${(props) => getFonts(props, 1)};
+	}
+	> *:not(:last-child) {
+		margin-bottom: ${(props) => getIndents(props, 1, 2)};
+	}
+`
+
+export const TogglerContainer = styled.div`
+	background-color: ${(props) => getColors(props).secondary};
+	border-radius: ${(props) => getBordersRadii(props, 4, 17)};
+	height: min-content;
+
+	& > label {
+		display: block;
 	}
 `
 
@@ -50,7 +88,7 @@ export const LogoIcon = styled(Logo)`
 export const LinksContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: ${(props) => getGaps(props, 4)};
+	gap: ${(props) => getGaps(props, 2)};
 	width: fit-content;
 	margin-bottom: ${(props) => getIndents(props, 4, 6)};
 `
@@ -86,28 +124,4 @@ export const Button = styled.button`
 	&:hover {
 		background-color: ${(props) => getColors(props).hover};
 	}
-`
-
-export const ProfileCard = styled.div`
-	display: flex;
-	gap: ${(props) => getGaps(props, 5, -3)};
-	margin-bottom: ${(props) => getIndents(props, 5)};
-`
-
-export const ProfileCardIcon = styled.img`
-	width: ${(props) => getSizes(props, 2, 1)};
-	height: ${(props) => getSizes(props, 2, 6)};
-`
-
-export const ProfileCardInfo = styled.div``
-
-export const ProfileCardName = styled.p`
-	font-weight: ${(props) => getFontWeights(props, 3)};
-	font-size: ${(props) => getFonts(props, 1)};
-	margin-bottom: ${(props) => getIndents(props, 0)};
-`
-
-export const ProfileCarTag = styled.p`
-	font-weight: ${(props) => getFontWeights(props, 1)};
-	font-size: ${(props) => getFonts(props, 1)};
 `
