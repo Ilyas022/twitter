@@ -45,7 +45,6 @@ export const signInUser = async (data: FormData) => {
 				numberOfTweets,
 			}
 		}
-		return undefined
 	} catch (error) {
 		return undefined
 	}
