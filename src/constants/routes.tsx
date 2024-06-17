@@ -5,13 +5,7 @@ import ProfilePage from 'pages/ProfilePage'
 import SignInPage from 'pages/SignInPage'
 import SignUpPage from 'pages/SignUpPage'
 
-import {
-	AUTH_PAGE_ROUTE,
-	SIGNIN_PAGE_ROUTE,
-	SIGNUP_PAGE_ROUTE,
-	FEED_PAGE_ROUTE,
-	PROFILE_PAGE_ROUTE,
-} from './routeLinks'
+import { AUTH_PAGE_ROUTE, SIGNIN_PAGE_ROUTE, SIGNUP_PAGE_ROUTE, FEED_PAGE_ROUTE, PROFILE_PAGE_ROUTE } from './routeLinks'
 
 export const routes = [
 	{ path: AUTH_PAGE_ROUTE, element: <AuthPage /> },

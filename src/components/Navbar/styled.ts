@@ -11,15 +11,7 @@ import More from 'assets/icons/navbar/moreIcon.svg?react'
 import Notification from 'assets/icons/navbar/notificationIcon.svg?react'
 import Profile from 'assets/icons/navbar/profileIcon.svg?react'
 import { NavbarLinkProps } from 'components/MenuBurger/types'
-import {
-	getBordersRadii,
-	getColors,
-	getFontWeights,
-	getFonts,
-	getGaps,
-	getIndents,
-	getSizes,
-} from 'utils/themeGetters'
+import { getBordersRadii, getColors, getFontWeights, getFonts, getGaps, getIndents, getSizes } from 'utils/themeGetters'
 
 const pcTabletBreakPoint = '1000px'
 

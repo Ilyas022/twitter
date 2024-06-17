@@ -34,12 +34,7 @@ function Select({ error, options, title, onChange, onBlur, value }: SelectProps)
 
 	return (
 		<Component ref={ref}>
-			<SelectItem
-				$active={active}
-				$error={error}
-				type="button"
-				onClick={() => setActive((prev) => !prev)}
-			>
+			<SelectItem $active={active} $error={error} type="button" onClick={() => setActive((prev) => !prev)}>
 				<p>{selectedOption?.label || title}</p>
 				<ArrowIcon $active={active} />
 			</SelectItem>

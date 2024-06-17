@@ -1,15 +1,7 @@
 import styled from 'styled-components'
 
 import { device } from 'constants/breakpoints'
-import {
-	getBorders,
-	getColors,
-	getFonts,
-	getGaps,
-	getIndents,
-	getSizes,
-	getlineHeights,
-} from 'utils/themeGetters'
+import { getBorders, getColors, getFonts, getGaps, getIndents, getSizes, getlineHeights } from 'utils/themeGetters'
 
 const smallScreenEnd = '1024px'
 

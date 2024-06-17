@@ -40,11 +40,7 @@ function TweetSearchBar() {
 	const db = getFirestore()
 	const tweetsRef = collection(db, 'tweets')
 	const [values, loading] = useCollection(
-		query(
-			tweetsRef,
-			where('text', '>=', debouncedSearch),
-			where('text', '<=', `${debouncedSearch}\uf8ff`)
-		)
+		query(tweetsRef, where('text', '>=', debouncedSearch), where('text', '<=', `${debouncedSearch}\uf8ff`))
 	)
 
 	useEffect(() => {
@@ -130,10 +126,7 @@ function TweetSearchBar() {
 						const { imageUrl, text } = tweet.data() as TweetResponse
 
 						return (
-							<SearchTweetItem
-								key={tweet.id}
-								onClick={handleTweetClick({ ...(tweet.data() as TweetResponse), id: tweet.id })}
-							>
+							<SearchTweetItem key={tweet.id} onClick={handleTweetClick({ ...(tweet.data() as TweetResponse), id: tweet.id })}>
 								{imageUrl && <TweetImage src={imageUrl} />}
 								<TweetText>{text}</TweetText>
 							</SearchTweetItem>

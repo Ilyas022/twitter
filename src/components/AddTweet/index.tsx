@@ -1,11 +1,4 @@
-import {
-	addDoc,
-	collection,
-	doc,
-	getFirestore,
-	serverTimestamp,
-	updateDoc,
-} from 'firebase/firestore'
+import { addDoc, collection, doc, getFirestore, serverTimestamp, updateDoc } from 'firebase/firestore'
 import { getDownloadURL, getStorage, ref } from 'firebase/storage'
 import { useState } from 'react'
 import { useUploadFile } from 'react-firebase-hooks/storage'
@@ -15,17 +8,7 @@ import { useActions } from 'hooks/useActions'
 import { useTypedSelector } from 'hooks/useTypedSelector'
 import { selectUser } from 'store/selectors/userSelectors'
 
-import {
-	AddImageBtn,
-	AddTweetBtn,
-	Container,
-	ControlsContainer,
-	AddImageIcon,
-	Input,
-	Item,
-	TextArea,
-	UserIcon,
-} from './styled'
+import { AddImageBtn, AddTweetBtn, Container, ControlsContainer, AddImageIcon, Input, Item, TextArea, UserIcon } from './styled'
 import { AddTweetProps } from './types'
 
 function AddTweet({ onClose }: AddTweetProps) {
@@ -83,11 +66,7 @@ function AddTweet({ onClose }: AddTweetProps) {
 		<Item>
 			<UserIcon src={ImagePlaceHolder} />
 			<Container>
-				<TextArea
-					value={tweetText}
-					onChange={handleTextChange}
-					placeholder="What's happening Tweet"
-				/>
+				<TextArea value={tweetText} onChange={handleTextChange} placeholder="What's happening Tweet" />
 				<ControlsContainer>
 					<AddImageBtn>
 						<AddImageIcon />

@@ -10,15 +10,7 @@ import Messages from 'assets/icons/navbar/messagesIcon.svg?react'
 import More from 'assets/icons/navbar/moreIcon.svg?react'
 import Notification from 'assets/icons/navbar/notificationIcon.svg?react'
 import Profile from 'assets/icons/navbar/profileIcon.svg?react'
-import {
-	getBordersRadii,
-	getColors,
-	getFontWeights,
-	getFonts,
-	getGaps,
-	getIndents,
-	getSizes,
-} from 'utils/themeGetters'
+import { getBordersRadii, getColors, getFontWeights, getFonts, getGaps, getIndents, getSizes } from 'utils/themeGetters'
 
 import { MenuProps, NavbarLinkProps } from './types'
 

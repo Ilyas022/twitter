@@ -41,10 +41,7 @@ function UserSearchBar() {
 	const users = useMemo(() => {
 		return values?.docs.filter((user) => {
 			const { name, surname } = user.data() as UserData
-			if (
-				name.toLowerCase().includes(search.toLowerCase()) ||
-				surname.toLowerCase().includes(search.toLowerCase())
-			) {
+			if (name.toLowerCase().includes(search.toLowerCase()) || surname.toLowerCase().includes(search.toLowerCase())) {
 				return true
 			}
 			return false

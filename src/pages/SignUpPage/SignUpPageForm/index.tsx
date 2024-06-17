@@ -65,20 +65,14 @@ function SignUpPageForm() {
 				<Input $error={!!errors.email?.message} placeholder="Email" {...register('email')} />
 			</FormItem>
 			<FormItem errorMessage={errors.password?.message}>
-				<Input
-					type="password"
-					$error={!!errors.password?.message}
-					placeholder="Password"
-					{...register('password')}
-				/>
+				<Input type="password" $error={!!errors.password?.message} placeholder="Password" {...register('password')} />
 			</FormItem>
 			<AuthLink to={AUTH_PAGE_ROUTE}>Use email</AuthLink>
 			<SubTitle>Date of birth</SubTitle>
 			<Text>
-				Facilisi sem pulvinar velit nunc, gravida scelerisque amet nibh sit. Quis bibendum ante
-				phasellus metus, magna lacinia sed augue. Odio enim nascetur leo mauris vel eget. Pretium id
-				ullamcorper blandit viverra dignissim eget tellus. Nibh mi massa in molestie a sit. Elit
-				congue.
+				Facilisi sem pulvinar velit nunc, gravida scelerisque amet nibh sit. Quis bibendum ante phasellus metus, magna lacinia sed
+				augue. Odio enim nascetur leo mauris vel eget. Pretium id ullamcorper blandit viverra dignissim eget tellus. Nibh mi massa
+				in molestie a sit. Elit congue.
 			</Text>
 			<SelectContainer>
 				<FormItem errorMessage={errors.birthMonth?.message}>

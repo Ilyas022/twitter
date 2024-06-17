@@ -1,15 +1,7 @@
 import styled, { css } from 'styled-components'
 
 import { device } from 'constants/breakpoints'
-import {
-	getBorders,
-	getBordersRadii,
-	getColors,
-	getFontWeights,
-	getFonts,
-	getGaps,
-	getIndents,
-} from 'utils/themeGetters'
+import { getBorders, getBordersRadii, getColors, getFontWeights, getFonts, getGaps, getIndents } from 'utils/themeGetters'
 
 import { InputProps } from './types'
 
