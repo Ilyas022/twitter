@@ -52,6 +52,7 @@ export const SeacrhContainer = styled.div`
 	@media ${device.sm} {
 		gap: ${(props) => getGaps(props, 0, 2)};
 		padding: ${(props) => getIndents(props, 1, 2)} ${(props) => getIndents(props, 3)};
+		margin-bottom: ${(props) => getIndents(props, 2)};
 	}
 `
 
@@ -60,7 +61,10 @@ export const SeacrhInput = styled.input`
 	font-size: ${(props) => getFonts(props, 1, 2)};
 	color: ${(props) => getColors(props).textColor};
 	margin-right: auto;
-	font-size: ${(props) => getFonts(props, 0)};
+
+	@media ${device.sm} {
+		font-size: ${(props) => getFonts(props, 0)};
+	}
 `
 
 export const LikeIcon = styled(Search)`
