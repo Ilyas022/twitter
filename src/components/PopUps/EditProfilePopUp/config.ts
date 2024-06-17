@@ -28,16 +28,12 @@ export const schema = yup.object({
 	email: yup.string().required('Email is required').email('Invalid email address'),
 	image: yup
 		.mixed()
-		.test(
-			'imageFormat',
-			'Only JPEG, PNG, GIF, BMP, or SVG files are allowed',
-			(value?: FileList) => {
-				const item = value && value[0]
-				if (item) {
-					const supportedFormats = ['jpeg', 'png', 'gif', 'bmp', 'svg+xml']
-					return supportedFormats.includes(item.type.split('/')[1])
-				}
-				return true
+		.test('imageFormat', 'Only JPEG, PNG, GIF, BMP, or SVG files are allowed', (value) => {
+			const item: File | undefined = value && (value as FileList)[0]
+			if (item) {
+				const supportedFormats = ['jpeg', 'png', 'gif', 'bmp', 'svg+xml']
+				return supportedFormats.includes(item.type.split('/')[1])
 			}
-		),
+			return true
+		}),
 })

@@ -13,7 +13,6 @@ export const signUpUser = async (data: FormData) => {
 
 		const auth = getAuth()
 		const userData = await createUserWithEmailAndPassword(auth, email, password)
-		const token: string = userData.user.accessToken as string
 		const userId = userData.user.uid
 		const db = getFirestore()
 		const ref = doc(db, 'users', userId)
@@ -56,7 +55,6 @@ export const signUpUser = async (data: FormData) => {
 				tag,
 				birthDate: birthDate?.seconds || null,
 				id: userId,
-				token,
 				about,
 				followers,
 				following,

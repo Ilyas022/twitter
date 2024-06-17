@@ -11,7 +11,6 @@ export const signUpUserWithGoogle = async () => {
 		provider.addScope('https://www.googleapis.com/auth/user.birthday.read')
 		provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
 		const userData = await signInWithPopup(auth, provider)
-		const token: string = userData.user.accessToken
 		const userId = userData.user.uid
 		const ref = doc(db, 'users', userId)
 
@@ -65,7 +64,6 @@ export const signUpUserWithGoogle = async () => {
 				tag,
 				birthDate: birthDate?.seconds || null,
 				id: userId,
-				token,
 				followers,
 				about,
 				following,

@@ -45,6 +45,7 @@ function EditProfilePopUp({ onClose }: EditProfilePopUpProps) {
 			const formattedDate = `${year}-${month}-${day}`
 			reset({
 				about,
+				// @ts-ignore
 				birthDate: formattedDate,
 				email,
 				name,
@@ -58,7 +59,12 @@ function EditProfilePopUp({ onClose }: EditProfilePopUpProps) {
 		const { birthDate, email, name, phone, surname, tag, about, image } = data
 
 		let imageUrl = null
-		const imageItem = image[0]
+		let imageItem
+
+		if (image) {
+			const [img] = image as File[]
+			imageItem = img
+		}
 
 		if (imageItem) {
 			const storageRef = ref(storage, `images/${imageItem.name}`)
