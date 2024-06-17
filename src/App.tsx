@@ -1,30 +1,18 @@
 import { Route, Routes } from 'react-router-dom'
 
-import PrivateRoute from 'components/PrivateRoute'
-import {
-	AUTH_PAGE_ROUTE,
-	FEED_PAGE_ROUTE,
-	PROFILE_PAGE_ROUTE,
-	SIGNIN_PAGE_ROUTE,
-	SIGNUP_PAGE_ROUTE,
-} from 'constants/routes'
-import AuthPage from 'pages/AuthPage'
-import FeedPage from 'pages/FeedPage'
-import ProfilePage from 'pages/ProfilePage'
-import SignInPage from 'pages/SignInPage'
-import SignUpPage from 'pages/SignUpPage'
+import { routes } from 'constants/routes'
 
 function App() {
 	return (
 		<Routes>
-			<Route path={AUTH_PAGE_ROUTE} element={<AuthPage />} />
-			<Route path={SIGNIN_PAGE_ROUTE} element={<SignInPage />} />
-			<Route path={SIGNUP_PAGE_ROUTE} element={<SignUpPage />} />
-			<Route element={<PrivateRoute />}>
-				<Route path={FEED_PAGE_ROUTE} element={<FeedPage />} />
-				<Route path={`${PROFILE_PAGE_ROUTE}/:id`} element={<ProfilePage />} />
-			</Route>
-			<Route path="*" element={<p>not found page</p>} />
+			{routes.map((route, index) => (
+				<Route key={index} {...(route.path ? { path: route.path } : {})} element={route.element}>
+					{route.children &&
+						route.children.map((childRoute, childIndex) => (
+							<Route key={childIndex} path={childRoute.path} element={childRoute.element} />
+						))}
+				</Route>
+			))}
 		</Routes>
 	)
 }

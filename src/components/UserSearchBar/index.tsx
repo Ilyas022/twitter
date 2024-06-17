@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import defaultUserIcon from 'assets/images/userIconLarge.png'
 import Loader from 'components/Loader'
-import { PROFILE_PAGE_ROUTE } from 'constants/routes'
+import { PROFILE_PAGE_ROUTE } from 'constants/routeLinks'
 import { useDebounce } from 'hooks/useDebounce'
 import useOnClickOutside from 'hooks/useOnClickOutside'
 import { useScreenDetector } from 'hooks/useScreenDetector'
