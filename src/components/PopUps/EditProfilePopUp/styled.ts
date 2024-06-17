@@ -12,7 +12,9 @@ import {
 	getGaps,
 } from 'utils/themeGetters'
 
-export const Form = styled.form``
+export const Form = styled.form`
+	padding-right: ${(props) => getIndents(props, 1)};
+`
 
 export const Input = styled.input<{ $error: boolean }>`
 	display: block;

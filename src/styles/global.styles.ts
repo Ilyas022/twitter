@@ -52,6 +52,8 @@ export const GlobalStyles = createGlobalStyle`
 		flex-direction: column;
 		background-color: ${(props) => getColors(props).bg};
 		color: ${(props) => getColors(props).textColor};
+		position: relative;
+		overflow: hidden;
 		
 		> main {
 		flex: 1 0 auto;

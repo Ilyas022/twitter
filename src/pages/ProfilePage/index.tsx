@@ -10,9 +10,9 @@ import AddTweet from 'components/AddTweet'
 import PopUp from 'components/PopUp'
 import EditProfilePopUp from 'components/PopUps/EditProfilePopUp'
 import Tweets from 'components/Tweets'
-import TweetSearchBar from 'components/TweetSearchBar'
 import { NOT_FOUND_PAGE_ROUTE } from 'constants/routes'
 import { useTypedSelector } from 'hooks/useTypedSelector'
+import TweetSearchBar from 'pages/ProfilePage/TweetSearchBar'
 import { getTweetsWithAuthors } from 'src/api/getTweetsWithAuthors'
 import { selectUser } from 'store/selectors/userSelectors'
 import { TweetType, UserData } from 'types/interfaces'
@@ -32,6 +32,7 @@ import {
 	FollowingsItem,
 	FollowingsNumber,
 	FollowingsTitle,
+	UserBg,
 } from './styled'
 
 function ProfilePage() {
@@ -52,7 +53,7 @@ function ProfilePage() {
 
 	const IsOnwner = useMemo(() => {
 		return id === userId
-	}, [])
+	}, [id, userId])
 
 	useEffect(() => {
 		getTweetsWithAuthors(tweetsData, setTweets)
@@ -75,7 +76,7 @@ function ProfilePage() {
 			<Page>
 				<Title>{name}</Title>
 				<TweetsCounter>{tweets?.length || 0} Tweets</TweetsCounter>
-				<img src={profileBgImage} alt="" />
+				<UserBg src={profileBgImage} alt="" />
 				<UserInfo>
 					<UserInfoContainer>
 						<UserImage src={imageUrl || defaultUserIcon} />

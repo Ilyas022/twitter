@@ -19,9 +19,9 @@ import {
 	UsetIcon,
 	TweetInner,
 	TweetInfo,
-	UserNamee,
-	UserInfoo,
-	UserTagg,
+	UserName,
+	UserInfo,
+	UserTag,
 	Sepatarot,
 	CreationDate,
 	TweetDescription,
@@ -88,21 +88,14 @@ function TweetItem({ author, createdAt, id, likes, text, imageUrl, onClose }: Tw
 			<UsetIcon src={defaultUserIcon} />
 			<TweetInner>
 				<TweetInfo>
-					<UserNamee>{`${author.name} ${author.surname}`}</UserNamee>
-					<UserInfoo>
-						<UserTagg>{author.tag}</UserTagg>
+					<UserName>{`${author.name} ${author.surname}`}</UserName>
+					<UserInfo>
+						<UserTag>{author.tag}</UserTag>
 						<Sepatarot />
 						<CreationDate>{`${day} ${month}`}</CreationDate>
-					</UserInfoo>
+					</UserInfo>
 				</TweetInfo>
 				<TweetDescription>{text}</TweetDescription>
-				{imageUrl && <TweetImage src={imageUrl} />}
-				<LikeCounter>
-					<LikeButton onClick={handleLikeClick} $isLiked={isLiked}>
-						{isLiked ? <LikeIconActive /> : <LikeIcon />}
-					</LikeButton>
-					<LikeNumber>{likes.length}</LikeNumber>
-				</LikeCounter>
 			</TweetInner>
 			{canDeleteTweet && (
 				<OptionsButton onClick={handleOptionsOpen}>
@@ -114,6 +107,13 @@ function TweetItem({ author, createdAt, id, likes, text, imageUrl, onClose }: Tw
 					<OptionsItem onClick={handleDeleteClick}>Delete tweet</OptionsItem>
 				</OptionsPopUp>
 			)}
+			{imageUrl && <TweetImage src={imageUrl} />}
+			<LikeCounter>
+				<LikeButton onClick={handleLikeClick} $isLiked={isLiked}>
+					{isLiked ? <LikeIconActive /> : <LikeIcon />}
+				</LikeButton>
+				<LikeNumber>{likes.length}</LikeNumber>
+			</LikeCounter>
 		</Tweet>
 	)
 }

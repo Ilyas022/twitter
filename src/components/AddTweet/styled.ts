@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import AddImage from 'assets/icons/placeHolderImageIcon.svg?react'
+import { device } from 'constants/breakpoints'
 import {
 	getBorders,
 	getBordersRadii,
@@ -16,13 +17,19 @@ export const Item = styled.div`
 	display: flex;
 	gap: ${(props) => getGaps(props, 4, -2)};
 	padding: ${(props) => getIndents(props, 1, 2)} ${(props) => getIndents(props, 2, -1)}
+		// prettier-ignore
 		${(props) => getIndents(props, 4, 4)};
 	border-bottom: ${(props) => getBorders(props, 0)} solid ${(props) => getColors(props).border};
+
+	@media ${device.sm} {
+		padding: ${(props) => getIndents(props, 1, 2)};
+		gap: ${(props) => getGaps(props, 0, 2)};
+	}
 `
 
 export const UserIcon = styled.img`
-	width: ${(props) => getSizes(props, 2, 1)};
-	height: ${(props) => getSizes(props, 2, 6)};
+	width: ${(props) => getSizes(props, 2, 2)};
+	height: ${(props) => getSizes(props, 2, 2)};
 `
 
 export const Container = styled.div`
@@ -36,6 +43,10 @@ export const TextArea = styled.textarea`
 	color: ${(props) => getColors(props).text};
 	resize: none;
 	background-color: transparent;
+
+	@media ${device.sm} {
+		font-size: ${(props) => getFonts(props, 1)};
+	}
 `
 
 export const AddImageBtn = styled.label`
@@ -67,6 +78,11 @@ export const AddTweetBtn = styled.button`
 	background-color: ${(props) => getColors(props).primary};
 	border: ${(props) => getBorders(props, 0)} solid ${(props) => getColors(props).border};
 	transition: background-color 0.3s;
+
+	@media ${device.sm} {
+		font-size: ${(props) => getFonts(props, 1)};
+		padding: ${(props) => getIndents(props, 1, 2)} ${(props) => getIndents(props, 3)};
+	}
 
 	&:hover {
 		background-color: ${(props) => getColors(props).hover};
