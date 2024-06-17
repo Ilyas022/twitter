@@ -48,15 +48,11 @@ export const UserInfo = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
-
 	padding: 0 ${(props) => getIndents(props, 3)} ${(props) => getIndents(props, 6, -4)};
 	border-bottom: ${(props) => getBorders(props, 0)} solid ${(props) => getColors(props).border};
 
-	// prettier-ignore
 	@media ${device.sm} {
-		padding: ${(props) => getIndents(props, 1, 2)} ${(props) => getIndents(props, 1, 2)} ${(props) =>
-		getIndents(props, 3)};
-		
+		padding: ${(props) => getIndents(props, 1, 2)} ${(props) => getIndents(props, 1, 2)} ${(props) => getIndents(props, 3)};
 	}
 `
 

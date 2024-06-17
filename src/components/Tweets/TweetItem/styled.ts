@@ -21,12 +21,8 @@ export const Tweet = styled.div`
 	position: relative;
 	display: flex;
 	gap: ${(props) => getGaps(props, 0)};
-	// prettier-ignore
-	padding: ${(props) => getIndents(props, 1, 2)} ${(props) => getIndents(props, 5, -5)} ${(props) =>
-		getIndents(props, 3)};
-
+	padding: ${(props) => getIndents(props, 1, 2)} ${(props) => getIndents(props, 5, -5)} ${(props) => getIndents(props, 3)};
 	border-bottom: ${(props) => getBorders(props, 0)} solid ${(props) => getColors(props).border};
-
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	grid-template-rows: auto auto;

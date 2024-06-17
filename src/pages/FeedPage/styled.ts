@@ -18,10 +18,7 @@ export const PageHeader = styled.div`
 	padding: ${(props) => getIndents(props, 2, -1)};
 
 	@media ${`(max-width: ${largeBreakPoint})`} {
-		// prettier-ignore
-		padding: ${(props) => getIndents(props, 1, 2)} 0 ${(props) => getIndents(props, 4, 6)}	${(
-			props
-		) => getIndents(props, 2, -1)};
+		padding: ${(props) => getIndents(props, 1, 2)} 0 ${(props) => getIndents(props, 4, 6)} ${(props) => getIndents(props, 2, -1)};
 	}
 
 	@media ${device.sm} {

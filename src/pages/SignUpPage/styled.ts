@@ -4,21 +4,22 @@ import Logo from 'assets/icons/logoIcon.svg?react'
 import { device } from 'constants/breakpoints'
 import { getColors, getFontWeights, getFonts, getIndents, getSizes } from 'utils/themeGetters'
 
+const signUpContainerLgWidth = 70
+const signUpContainerMdWidth = 95
+
 export const Page = styled.main``
 
 export const Container = styled.div`
 	width: ${(props) => getSizes(props, 13, 10)};
 	margin: 0 auto;
-	// prettier-ignore
-	padding: ${(props) => getIndents(props, 4, 6)} ${(props) => getIndents(props, 5)}	${(props) =>
-		getIndents(props, 5)};
+	padding: ${(props) => getIndents(props, 4, 6)} ${(props) => getIndents(props, 5)} ${(props) => getIndents(props, 5)};
 
 	@media ${device.lg} {
-		width: 70vw;
+		width: ${signUpContainerLgWidth};
 	}
 
 	@media ${device.md} {
-		width: 95vw;
+		width: ${signUpContainerMdWidth} 'vw';
 		padding: ${(props) => getIndents(props, 2)};
 	}
 `
