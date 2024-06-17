@@ -11,6 +11,8 @@ import {
 	getSizes,
 } from 'utils/themeGetters'
 
+import { TweetsContainerProps } from './types'
+
 const largeBreakPoint = '1600px'
 const pcTabletBreakPoint = '1000px'
 
@@ -77,7 +79,7 @@ export const LikeIcon = styled(Search)`
 	}
 `
 
-export const TweetsContainer = styled.div<{ $opened: boolean }>`
+export const TweetsContainer = styled.div<TweetsContainerProps>`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

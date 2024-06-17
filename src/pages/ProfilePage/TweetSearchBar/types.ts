@@ -9,3 +9,7 @@ export type AuthorType = {
 
 export type TweetStateType = (TweetResponse & { id: string }) | null
 export type TweetType = TweetResponse & { id: string }
+
+export interface TweetsContainerProps {
+	$opened: boolean
+}

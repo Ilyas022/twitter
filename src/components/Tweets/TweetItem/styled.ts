@@ -15,6 +15,8 @@ import {
 	getSizes,
 } from 'utils/themeGetters'
 
+import { ButtonProps } from './types'
+
 export const Tweet = styled.div`
 	position: relative;
 	display: flex;
@@ -117,7 +119,7 @@ export const LikeCounter = styled.div`
 	}
 `
 
-export const LikeButton = styled.button<{ $isLiked: boolean }>`
+export const LikeButton = styled.button<ButtonProps>`
 	cursor: pointer;
 
 	&:hover {
