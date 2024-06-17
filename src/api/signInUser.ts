@@ -13,6 +13,11 @@ export const signInUser = async (data: FormData) => {
 		const userData = await signInWithEmailAndPassword(auth, emailOrPhone, password)
 		const id = userData.user.uid
 		const ref = doc(db, 'users', id)
+		let token
+
+		if ('accessToken' in userData.user) {
+			token = userData.user.accessToken
+		}
 
 		const userFields = await getDoc(ref)
 		if (userFields.exists()) {
@@ -37,6 +42,7 @@ export const signInUser = async (data: FormData) => {
 				tag,
 				birthDate: birthDate?.seconds || null,
 				id,
+				token,
 				followers,
 				about,
 				following,

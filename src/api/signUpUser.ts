@@ -16,6 +16,11 @@ export const signUpUser = async (data: FormData) => {
 		const userId = userData.user.uid
 		const db = getFirestore()
 		const ref = doc(db, 'users', userId)
+		let token
+
+		if ('accessToken' in userData.user) {
+			token = userData.user.accessToken
+		}
 
 		await setDoc(ref, {
 			birthDate: birthDateTimestamp,
@@ -55,6 +60,7 @@ export const signUpUser = async (data: FormData) => {
 				tag,
 				birthDate: birthDate?.seconds || null,
 				id: userId,
+				token,
 				about,
 				followers,
 				following,
