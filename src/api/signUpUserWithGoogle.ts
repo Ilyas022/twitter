@@ -13,11 +13,7 @@ export const signUpUserWithGoogle = async () => {
 		const userData = await signInWithPopup(auth, provider)
 		const userId = userData.user.uid
 		const ref = doc(db, 'users', userId)
-		let token
-
-		if ('accessToken' in userData.user) {
-			token = userData.user.accessToken
-		}
+		const token = await userData.user.getIdToken()
 
 		const {
 			email,
