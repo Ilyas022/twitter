@@ -34,18 +34,10 @@ const userSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
-		setUser: (state, action: PayloadAction<UserSlice>) => {
-			return { ...state, ...action.payload }
-		},
-		unSetUser: () => {
-			return initialState
-		},
-		incTweetsNumber: (state) => {
-			return { ...state, numberOfTweets: state.numberOfTweets + 1 }
-		},
-		decTweetsNumber: (state) => {
-			return { ...state, numberOfTweets: state.numberOfTweets - 1 }
-		},
+		setUser: (state, action: PayloadAction<UserSlice>) => ({ ...state, ...action.payload }),
+		unSetUser: () => initialState,
+		incTweetsNumber: (state) => ({ ...state, numberOfTweets: state.numberOfTweets + 1 }),
+		decTweetsNumber: (state) => ({ ...state, numberOfTweets: state.numberOfTweets - 1 }),
 	},
 })
 
