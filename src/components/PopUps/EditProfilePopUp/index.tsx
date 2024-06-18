@@ -11,9 +11,9 @@ import { useTypedSelector } from 'hooks/useTypedSelector'
 import { selectUser } from 'store/selectors/userSelectors'
 import { UserData } from 'types/interfaces'
 
-import { schema } from './config'
+import { formItems, schema } from './config'
 import { Button, Form, Input } from './styled'
-import { EditProfilePopUpProps } from './types'
+import { EditProfilePopUpProps, FormItemType } from './types'
 
 function EditProfilePopUp({ onClose }: EditProfilePopUpProps) {
 	const {
@@ -85,60 +85,22 @@ function EditProfilePopUp({ onClose }: EditProfilePopUpProps) {
 		})
 		onClose()
 	})
-
 	return (
 		<Form onSubmit={onSubmit}>
-			<FormItem errorMessage={errors.name?.message}>
-				<Input $error={!!errors.name?.message} placeholder="Add your name" {...register('name')} />
-			</FormItem>
-			<FormItem errorMessage={errors.surname?.message}>
-				<Input
-					$error={!!errors.surname?.message}
-					placeholder="Add your surname"
-					{...register('surname')}
-				/>
-			</FormItem>
-			<FormItem errorMessage={errors.birthDate?.message}>
-				<Input
-					type="date"
-					$error={!!errors.birthDate?.message}
-					placeholder="Birth date"
-					{...register('birthDate')}
-				/>
-			</FormItem>
-			<FormItem errorMessage={errors.phone?.message}>
-				<Input
-					$error={!!errors.phone?.message}
-					placeholder="Add your phone number"
-					{...register('phone')}
-				/>
-			</FormItem>
-			<FormItem errorMessage={errors.tag?.message}>
-				<Input $error={!!errors.tag?.message} placeholder="Add your tag" {...register('tag')} />
-			</FormItem>
-			<FormItem errorMessage={errors.about?.message}>
-				<Input
-					$error={!!errors.about?.message}
-					placeholder="Add your about info"
-					{...register('about')}
-				/>
-			</FormItem>
-			<FormItem errorMessage={errors.email?.message}>
-				<Input
-					$error={!!errors.email?.message}
-					placeholder="Add your email"
-					{...register('email')}
-				/>
-			</FormItem>
-			<FormItem errorMessage={errors.image?.message}>
-				<Input
-					type="file"
-					accept="image/*"
-					$error={!!errors.image?.message}
-					placeholder="Add your image"
-					{...register('image')}
-				/>
-			</FormItem>
+			{formItems.map((formItem) => {
+				const field = formItem.field as FormItemType
+				const { placeholder } = formItem
+				return (
+					<FormItem key={field} errorMessage={errors[field]?.message}>
+						<Input
+							{...(field === 'image' && { type: 'file', accept: 'image/*' })}
+							$error={!!errors[field]?.message}
+							placeholder={placeholder}
+							{...register(field)}
+						/>
+					</FormItem>
+				)
+			})}
 			<Button type="submit" disabled={!isDirty || !isValid}>
 				Next
 			</Button>

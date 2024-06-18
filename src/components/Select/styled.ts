@@ -3,11 +3,13 @@ import styled, { css } from 'styled-components'
 import Arrow from 'assets/icons/ArrowIcon.svg?react'
 import { getBorders, getBordersRadii, getColors, getIndents, getSizes } from 'utils/themeGetters'
 
+import { IconProps, SelectStyledProps } from './types'
+
 export const Component = styled.div`
 	position: relative;
 `
 
-export const SelectItem = styled.button<{ $active: boolean; $error: boolean }>`
+export const SelectItem = styled.button<SelectStyledProps>`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -30,7 +32,7 @@ export const SelectItem = styled.button<{ $active: boolean; $error: boolean }>`
 		`}
 `
 
-export const ArrowIcon = styled(Arrow)<{ $active: boolean }>`
+export const ArrowIcon = styled(Arrow)<IconProps>`
 	width: ${(props) => getSizes(props, 0, -10)};
 	height: ${(props) => getSizes(props, 0, -16)};
 	color: ${(props) => getColors(props).black};
@@ -61,7 +63,7 @@ export const Menu = styled.div`
 	}
 `
 
-export const Option = styled.button<{ $active: boolean }>`
+export const Option = styled.button<IconProps>`
 	padding: ${(props) => getIndents(props, 1, 2)} ${(props) => getIndents(props, 3)};
 	transition: background-color 0.3s;
 	text-align: center;

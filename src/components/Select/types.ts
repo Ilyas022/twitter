@@ -9,3 +9,12 @@ export interface SelectProps {
 	onChange: (value: number) => void
 	onBlur: () => void
 }
+
+export interface SelectStyledProps {
+	$active: boolean
+	$error: boolean
+}
+
+export interface IconProps {
+	$active: boolean
+}

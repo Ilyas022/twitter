@@ -1,15 +1,9 @@
 import styled, { css } from 'styled-components'
 
 import { device } from 'constants/breakpoints'
-import {
-	getBorders,
-	getBordersRadii,
-	getColors,
-	getFontWeights,
-	getFonts,
-	getGaps,
-	getIndents,
-} from 'utils/themeGetters'
+import { getBorders, getBordersRadii, getColors, getFontWeights, getFonts, getGaps, getIndents } from 'utils/themeGetters'
+
+import { InputProps } from './types'
 
 export const Form = styled.form`
 	display: flex;
@@ -27,7 +21,7 @@ export const Form = styled.form`
 	}
 `
 
-export const Input = styled.input<{ $error: boolean }>`
+export const Input = styled.input<InputProps>`
 	display: block;
 	width: 100%;
 	padding: ${(props) => getIndents(props, 4, 1)} ${(props) => getIndents(props, 3)};

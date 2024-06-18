@@ -7,18 +7,9 @@ import {
 	MORE_PAGE_ROUTE,
 	NOTIFICATIONS_PAGE_ROUTE,
 	PROFILE_PAGE_ROUTE,
-} from 'constants/routes'
+} from 'constants/routeLinks'
 
-import {
-	BookmarksIcon,
-	HomeIcon,
-	ExploreIcon,
-	ListsIcon,
-	MessagesIcon,
-	MoreIcon,
-	NotificationIcon,
-	ProfileIcon,
-} from './styled'
+import { BookmarksIcon, HomeIcon, ExploreIcon, ListsIcon, MessagesIcon, MoreIcon, NotificationIcon, ProfileIcon } from './styled'
 
 export const navbarLinks = [
 	{

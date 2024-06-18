@@ -8,7 +8,7 @@ import {
 	SIGNIN_PAGE_ROUTE,
 	SIGNUP_PAGE_ROUTE,
 	TERMS_PAGE_ROUTE,
-} from 'constants/routes'
+} from 'constants/routeLinks'
 import { useActions } from 'hooks/useActions'
 import { useTypedSelector } from 'hooks/useTypedSelector'
 import { signUpUserWithGoogle } from 'src/api/signUpUserWithGoogle'
@@ -68,8 +68,8 @@ function AuthPage() {
 						<Button onClick={handleSignUpWithEmailClick}>Sign up with email</Button>
 						<Warning>
 							By singing up you agree to the <Link to={TERMS_PAGE_ROUTE}>Terms of Service</Link> and{' '}
-							<Link to={PRIVACY_PAGE_ROUTE}>Privacy Policy</Link>, including{' '}
-							<Link to={COOKIE_POLICY_PAGE_ROUTE}>Cookie Use</Link>.
+							<Link to={PRIVACY_PAGE_ROUTE}>Privacy Policy</Link>, including <Link to={COOKIE_POLICY_PAGE_ROUTE}>Cookie Use</Link>
+							.
 						</Warning>
 						<Login>
 							Already have an account? <Link to={SIGNIN_PAGE_ROUTE}>Log in</Link>

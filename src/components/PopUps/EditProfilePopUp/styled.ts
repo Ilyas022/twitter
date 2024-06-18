@@ -12,11 +12,13 @@ import {
 	getGaps,
 } from 'utils/themeGetters'
 
+import { InputProps } from './types'
+
 export const Form = styled.form`
 	padding-right: ${(props) => getIndents(props, 1)};
 `
 
-export const Input = styled.input<{ $error: boolean }>`
+export const Input = styled.input<InputProps>`
 	display: block;
 	width: 100%;
 	padding: ${(props) => getIndents(props, 1, 2)};

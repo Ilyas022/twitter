@@ -14,6 +14,8 @@ import {
 	getlineHeights,
 } from 'utils/themeGetters'
 
+import { InputProps } from './types'
+
 export const SubTitle = styled.h2`
 	margin-bottom: ${(props) => getIndents(props, 4, 8)};
 	font-weight: ${(props) => getFontWeights(props, 3, 100)};
@@ -40,7 +42,7 @@ export const Form = styled.form`
 	margin-bottom: ${(props) => getIndents(props, 5)};
 `
 
-export const Input = styled.input<{ $error: boolean }>`
+export const Input = styled.input<InputProps>`
 	display: block;
 	width: 100%;
 	padding: ${(props) => getIndents(props, 4, 1)} ${(props) => getIndents(props, 3)};

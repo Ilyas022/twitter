@@ -56,6 +56,7 @@ module.exports = {
     "global-require": "off",
     "react/require-default-props": "off",
     "react/no-array-index-key": "off",
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "consistent-return": "off"
   },
 }

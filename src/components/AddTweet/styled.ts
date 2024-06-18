@@ -16,9 +16,7 @@ import {
 export const Item = styled.div`
 	display: flex;
 	gap: ${(props) => getGaps(props, 4, -2)};
-	padding: ${(props) => getIndents(props, 1, 2)} ${(props) => getIndents(props, 2, -1)}
-		// prettier-ignore
-		${(props) => getIndents(props, 4, 4)};
+	padding: ${(props) => getIndents(props, 1, 2)} ${(props) => getIndents(props, 2, -1)} ${(props) => getIndents(props, 4, 4)};
 	border-bottom: ${(props) => getBorders(props, 0)} solid ${(props) => getColors(props).border};
 
 	@media ${device.sm} {
@@ -69,8 +67,7 @@ export const AddImageIcon = styled(AddImage)``
 
 export const AddTweetBtn = styled.button`
 	border-radius: ${(props) => getBordersRadii(props, 4, 112)};
-	padding: ${(props) => getIndents(props, 2, -1)} ${(props) => getIndents(props, 4, 6)}
-		${(props) => getIndents(props, 2, 2)} ${(props) => getIndents(props, 4, 6)};
+	padding: ${(props) => getIndents(props, 2, -1)} ${(props) => getIndents(props, 4, 6)} ${(props) => getIndents(props, 2, 2)};
 	font-weight: ${(props) => getFontWeights(props, 3, 100)};
 	font-size: ${(props) => getFonts(props, 1, 1)};
 	line-height: 100%;

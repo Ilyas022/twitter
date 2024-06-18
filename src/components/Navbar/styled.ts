@@ -10,15 +10,8 @@ import Messages from 'assets/icons/navbar/messagesIcon.svg?react'
 import More from 'assets/icons/navbar/moreIcon.svg?react'
 import Notification from 'assets/icons/navbar/notificationIcon.svg?react'
 import Profile from 'assets/icons/navbar/profileIcon.svg?react'
-import {
-	getBordersRadii,
-	getColors,
-	getFontWeights,
-	getFonts,
-	getGaps,
-	getIndents,
-	getSizes,
-} from 'utils/themeGetters'
+import { NavbarLinkProps } from 'components/MenuBurger/types'
+import { getBordersRadii, getColors, getFontWeights, getFonts, getGaps, getIndents, getSizes } from 'utils/themeGetters'
 
 const pcTabletBreakPoint = '1000px'
 
@@ -55,7 +48,7 @@ export const LinksContainer = styled.div`
 	margin-bottom: ${(props) => getIndents(props, 4, 6)};
 `
 
-export const NavbarLink = styled(Link)<{ $active: boolean }>`
+export const NavbarLink = styled(Link)<NavbarLinkProps>`
 	display: inline-flex;
 	align-items: center;
 	width: fit-content;

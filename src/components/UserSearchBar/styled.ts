@@ -2,14 +2,9 @@ import styled, { css } from 'styled-components'
 
 import Search from 'assets/icons/searchIcon.svg?react'
 import { device } from 'constants/breakpoints'
-import {
-	getBordersRadii,
-	getColors,
-	getFonts,
-	getGaps,
-	getIndents,
-	getSizes,
-} from 'utils/themeGetters'
+import { getBordersRadii, getColors, getFonts, getGaps, getIndents, getSizes } from 'utils/themeGetters'
+
+import { ContainerProps } from './types'
 
 const largeBreakPoint = '1600px'
 const pcTabletBreakPoint = '1000px'
@@ -81,7 +76,7 @@ export const LikeIcon = styled(Search)`
 	}
 `
 
-export const TweetsContainer = styled.div<{ $opened: boolean }>`
+export const TweetsContainer = styled.div<ContainerProps>`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

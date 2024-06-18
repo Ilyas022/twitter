@@ -7,9 +7,8 @@ import { UserData } from 'types/interfaces'
 export const signUpUser = async (data: FormData) => {
 	try {
 		const { birthDay, birthMonth, birthYear, email, name, phone, password, surname } = data
-		const birthDateTimestamp = Timestamp.fromDate(
-			new Date(Number(birthYear), Number(birthMonth), Number(birthDay))
-		)
+		const birthDateFromData = new Date(Number(birthYear), Number(birthMonth), Number(birthDay))
+		const birthDateTimestamp = Timestamp.fromDate(birthDateFromData)
 
 		const auth = getAuth()
 		const userData = await createUserWithEmailAndPassword(auth, email, password)

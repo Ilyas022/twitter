@@ -1,11 +1,4 @@
-import {
-	arrayRemove,
-	arrayUnion,
-	deleteDoc,
-	doc,
-	getFirestore,
-	updateDoc,
-} from 'firebase/firestore'
+import { arrayRemove, arrayUnion, deleteDoc, doc, getFirestore, updateDoc } from 'firebase/firestore'
 import { useRef, useState } from 'react'
 
 import defaultUserIcon from 'assets/images/userIconLarge.png'

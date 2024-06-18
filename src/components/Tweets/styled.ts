@@ -1,13 +1,6 @@
 import styled from 'styled-components'
 
-import {
-	getBorders,
-	getColors,
-	getFontWeights,
-	getFonts,
-	getIndents,
-	getSizes,
-} from 'utils/themeGetters'
+import { getBorders, getColors, getFontWeights, getFonts, getIndents, getSizes } from 'utils/themeGetters'
 
 export const TweetsTitle = styled.p`
 	display: inline-block;

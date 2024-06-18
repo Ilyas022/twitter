@@ -6,28 +6,28 @@ export const getTweetsWithAuthors = async (
 	tweetsData: QuerySnapshot<DocumentData, DocumentData> | undefined,
 	setter: React.Dispatch<React.SetStateAction<TweetType[] | undefined>>
 ) => {
-	if (tweetsData) {
-		const tweetsWithAuthors: TweetType[] = await Promise.all(
-			tweetsData.docs.map(async (tweet) => {
-				const { author, createdAt, likes, text, imageUrl } = tweet.data() as TweetResponse
-				const authorData = await getDoc(author)
+	if (!tweetsData) return
 
-				const authorInfo = authorData.data() as User
-				return {
-					author: {
-						id: author.id,
-						tag: authorInfo.tag,
-						surname: authorInfo.surname,
-						name: authorInfo.name,
-					},
-					createdAt: tweet.metadata.hasPendingWrites ? Timestamp.now() : createdAt,
-					id: tweet.id,
-					likes,
-					text,
-					imageUrl,
-				}
-			})
-		)
-		setter(tweetsWithAuthors)
-	}
+	const tweetsWithAuthors: TweetType[] = await Promise.all(
+		tweetsData.docs.map(async (tweet) => {
+			const { author, createdAt, likes, text, imageUrl } = tweet.data() as TweetResponse
+			const authorData = await getDoc(author)
+
+			const authorInfo = authorData.data() as User
+			return {
+				author: {
+					id: author.id,
+					tag: authorInfo.tag,
+					surname: authorInfo.surname,
+					name: authorInfo.name,
+				},
+				createdAt: tweet.metadata.hasPendingWrites ? Timestamp.now() : createdAt,
+				id: tweet.id,
+				likes,
+				text,
+				imageUrl,
+			}
+		})
+	)
+	setter(tweetsWithAuthors)
 }
