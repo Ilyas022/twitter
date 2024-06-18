@@ -1,6 +1,6 @@
 import { collection, getFirestore, query } from 'firebase/firestore'
 import { useMemo, useRef, useState } from 'react'
-import { useCollectionOnce } from 'react-firebase-hooks/firestore'
+import { useCollection } from 'react-firebase-hooks/firestore'
 import { useNavigate } from 'react-router-dom'
 
 import defaultUserIcon from 'assets/images/userIconLarge.png'
@@ -36,11 +36,12 @@ function UserSearchBar() {
 
 	const db = getFirestore()
 	const usersRef = collection(db, 'users')
-	const [values, loading] = useCollectionOnce(query(usersRef))
+	const [values, loading] = useCollection(query(usersRef))
 
 	const users = useMemo(() => {
 		return values?.docs.filter((user) => {
 			const { name, surname } = user.data() as UserData
+
 			if (name.toLowerCase().includes(search.toLowerCase()) || surname.toLowerCase().includes(search.toLowerCase())) {
 				return true
 			}

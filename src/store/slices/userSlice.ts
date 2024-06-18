@@ -1,11 +1,14 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { Timestamp } from 'firebase/firestore'
+
+import { updateUser } from 'store/thunks/userThunks'
 
 interface UserSlice {
 	id: string
 	token: string
 	name: string
 	surname: string
-	birthDate: number | null
+	birthDate: Timestamp | null
 	phone: string | null
 	email: string
 	tag: string
@@ -13,6 +16,7 @@ interface UserSlice {
 	followers: number
 	following: number
 	about: string
+	imageUrl: string | null
 }
 
 const initialState: UserSlice = {
@@ -20,7 +24,7 @@ const initialState: UserSlice = {
 	token: '',
 	name: '',
 	surname: '',
-	birthDate: 0,
+	birthDate: null,
 	phone: '',
 	email: '',
 	tag: '',
@@ -28,6 +32,7 @@ const initialState: UserSlice = {
 	followers: 0,
 	following: 0,
 	about: '',
+	imageUrl: null,
 }
 
 const userSlice = createSlice({
@@ -38,6 +43,9 @@ const userSlice = createSlice({
 		unSetUser: () => initialState,
 		incTweetsNumber: (state) => ({ ...state, numberOfTweets: state.numberOfTweets + 1 }),
 		decTweetsNumber: (state) => ({ ...state, numberOfTweets: state.numberOfTweets - 1 }),
+	},
+	extraReducers(builder) {
+		builder.addCase(updateUser.fulfilled, (state, action) => ({ ...state, ...action.payload }))
 	},
 })
 

@@ -57,7 +57,7 @@ function ProfilePage() {
 
 	useEffect(() => {
 		getTweetsWithAuthors(tweetsData, setTweets)
-	}, [tweetsData])
+	}, [tweetsData, userData])
 
 	if ((userLoading && tweetsLoading) || userLoading || tweetsLoading) {
 		return <div>loading</div>

@@ -8,8 +8,8 @@ const validatePhone = (phone: string) => {
 	return yup
 		.string()
 		.matches(/^\+375/, 'Incorrect code')
-		.matches(/^\+375\((17|25|29|33|44)\)/, 'Incorrect phone operator')
-		.length(17, 'wrong number')
+		.matches(/^\+375(17|25|29|33|44)/, 'Incorrect phone operator')
+		.length(13, 'wrong number')
 		.required('Required')
 		.isValidSync(phone)
 }

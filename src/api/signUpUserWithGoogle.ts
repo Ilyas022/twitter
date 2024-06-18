@@ -63,7 +63,7 @@ export const signUpUserWithGoogle = async () => {
 				email: userEmail,
 				phone,
 				tag,
-				birthDate: birthDate?.seconds || null,
+				birthDate: birthDate || null,
 				id: userId,
 				token,
 				followers,

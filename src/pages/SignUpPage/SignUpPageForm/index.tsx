@@ -56,7 +56,7 @@ function SignUpPageForm() {
 			<FormItem errorMessage={errors.phone?.message}>
 				<Input
 					$error={!!errors.phone?.message}
-					placeholder="Phone number | follow mask +xxx(xx)xxx-xx-xx"
+					placeholder="Phone number | follow mask +xxxxxxxxxxxx"
 					{...register('phone')}
 					maxLength={17}
 				/>

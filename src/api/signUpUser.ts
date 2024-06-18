@@ -53,7 +53,7 @@ export const signUpUser = async (data: FormData) => {
 				email: userEmail,
 				phone: userPhone,
 				tag,
-				birthDate: birthDate?.seconds || null,
+				birthDate: birthDate || null,
 				id: userId,
 				token,
 				about,

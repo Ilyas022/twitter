@@ -7,6 +7,7 @@ import { useUploadFile } from 'react-firebase-hooks/storage'
 import { useForm } from 'react-hook-form'
 
 import FormItem from 'components/FormItem'
+import { useActions } from 'hooks/useActions'
 import { useTypedSelector } from 'hooks/useTypedSelector'
 import { selectUser } from 'store/selectors/userSelectors'
 import { UserData } from 'types/interfaces'
@@ -32,6 +33,7 @@ function EditProfilePopUp({ onClose }: EditProfilePopUpProps) {
 	const [value] = useDocumentDataOnce(userRef)
 	const storage = getStorage()
 	const [uploadFile] = useUploadFile()
+	const { updateUser } = useActions()
 
 	useEffect(() => {
 		if (value) {
@@ -83,6 +85,8 @@ function EditProfilePopUp({ onClose }: EditProfilePopUpProps) {
 			about,
 			imageUrl,
 		})
+
+		updateUser(userRef)
 		onClose()
 	})
 	return (

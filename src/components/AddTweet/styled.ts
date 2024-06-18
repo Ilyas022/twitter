@@ -28,6 +28,8 @@ export const Item = styled.div`
 export const UserIcon = styled.img`
 	width: ${(props) => getSizes(props, 2, 2)};
 	height: ${(props) => getSizes(props, 2, 2)};
+	border-radius: 50%;
+	object-fit: cover;
 `
 
 export const Container = styled.div`

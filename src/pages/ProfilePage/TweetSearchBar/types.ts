@@ -5,6 +5,7 @@ export type AuthorType = {
 	tag: string
 	surname: string
 	name: string
+	imageUrl: string | null
 } | null
 
 export type TweetStateType = (TweetResponse & { id: string }) | null

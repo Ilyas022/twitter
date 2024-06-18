@@ -14,14 +14,16 @@ export const getTweetsWithAuthors = async (
 			const authorData = await getDoc(author)
 
 			const authorInfo = authorData.data() as User
+
 			return {
 				author: {
 					id: author.id,
 					tag: authorInfo.tag,
 					surname: authorInfo.surname,
 					name: authorInfo.name,
+					imageUrl: authorInfo.imageUrl,
 				},
-				createdAt: tweet.metadata.hasPendingWrites ? Timestamp.now() : createdAt,
+				createdAt: createdAt || Timestamp.now(),
 				id: tweet.id,
 				likes,
 				text,

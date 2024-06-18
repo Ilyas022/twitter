@@ -53,6 +53,7 @@ function TweetSearchBar() {
 					tag: authorInfo.tag,
 					surname: authorInfo.surname,
 					name: authorInfo.name,
+					imageUrl: authorInfo.imageUrl,
 				})
 			}
 		}
