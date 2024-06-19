@@ -34,7 +34,7 @@ function SignInPageForm() {
 				<Input $error={!!errors.emailOrPhone?.message} placeholder="Phone number, email address" {...register('emailOrPhone')} />
 			</FormItem>
 			<FormItem errorMessage={errors.password?.message}>
-				<Input $error={!!errors.password?.message} placeholder="Password" {...register('password')} />
+				<Input $error={!!errors.password?.message} type="password" placeholder="Password" {...register('password')} />
 			</FormItem>
 			<Button type="submit" disabled={!isDirty || !isValid}>
 				Log In

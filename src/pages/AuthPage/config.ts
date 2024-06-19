@@ -16,7 +16,7 @@ import {
 	SETTINGS_PAGE_ROUTE,
 	STATUS_PAGE_ROUTE,
 	TERMS_PAGE_ROUTE,
-} from 'constants/routeLinks'
+} from 'constants/routes'
 
 export const footerLinks = [
 	{

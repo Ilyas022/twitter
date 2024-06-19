@@ -8,7 +8,7 @@ import {
 	SIGNIN_PAGE_ROUTE,
 	SIGNUP_PAGE_ROUTE,
 	TERMS_PAGE_ROUTE,
-} from 'constants/routeLinks'
+} from 'constants/routes'
 import { useActions } from 'hooks/useActions'
 import { useTypedSelector } from 'hooks/useTypedSelector'
 import { signUpUserWithGoogle } from 'src/api/signUpUserWithGoogle'

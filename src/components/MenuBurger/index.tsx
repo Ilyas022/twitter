@@ -2,7 +2,7 @@ import { getAuth } from 'firebase/auth'
 import React, { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { AUTH_PAGE_ROUTE } from 'constants/routeLinks'
+import { AUTH_PAGE_ROUTE } from 'constants/routes'
 import { useActions } from 'hooks/useActions'
 import { useScrollLock } from 'hooks/useScrollLock'
 import { useTypedSelector } from 'hooks/useTypedSelector'
