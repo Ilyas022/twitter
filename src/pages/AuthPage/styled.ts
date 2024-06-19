@@ -142,6 +142,8 @@ export const GoogleIcon = styled(Google)`
 	height: ${(props) => getSizes(props, 1)};
 `
 
+export const GoogleSignUpText = styled.span``
+
 export const Footer = styled.footer`
 	display: flex;
 	flex-wrap: wrap;
