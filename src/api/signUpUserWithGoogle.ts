@@ -42,38 +42,37 @@ export const signUpUserWithGoogle = async () => {
 
 		const userFields = await getDoc(ref)
 
-		if (userFields.exists()) {
-			const {
-				birthDate,
-				email: userEmail,
-				name: userName,
-				phone,
-				surname: userSurname,
-				tag,
-				followers,
-				following,
-				about,
-				numberOfTweets,
-				imageUrl,
-			} = userFields.data() as UserData
+		if (!userFields.exists()) return
 
-			return {
-				name: userName,
-				surname: userSurname,
-				email: userEmail,
-				phone,
-				tag,
-				birthDate: birthDate || null,
-				id: userId,
-				token,
-				followers,
-				about,
-				following,
-				numberOfTweets,
-				imageUrl,
-			}
+		const {
+			birthDate,
+			email: userEmail,
+			name: userName,
+			phone,
+			surname: userSurname,
+			tag,
+			followers,
+			following,
+			about,
+			numberOfTweets,
+			imageUrl,
+		} = userFields.data() as UserData
+
+		return {
+			name: userName,
+			surname: userSurname,
+			email: userEmail,
+			phone,
+			tag,
+			birthDate: birthDate || null,
+			id: userId,
+			token,
+			followers,
+			about,
+			following,
+			numberOfTweets,
+			imageUrl,
 		}
-		return undefined
 	} catch (error) {
 		return undefined
 	}

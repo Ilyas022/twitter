@@ -16,36 +16,37 @@ export const signInUser = async (data: FormData) => {
 		const token = await userData.user.getIdToken()
 
 		const userFields = await getDoc(ref)
-		if (userFields.exists()) {
-			const {
-				birthDate,
-				email: userEmail,
-				name,
-				phone,
-				surname,
-				tag,
-				followers,
-				about,
-				following,
-				numberOfTweets,
-				imageUrl,
-			} = userFields.data() as UserData
 
-			return {
-				name,
-				surname,
-				email: userEmail,
-				phone,
-				tag,
-				birthDate: birthDate || null,
-				id,
-				token,
-				followers,
-				about,
-				following,
-				numberOfTweets,
-				imageUrl,
-			}
+		if (!userFields.exists()) return
+
+		const {
+			birthDate,
+			email: userEmail,
+			name,
+			phone,
+			surname,
+			tag,
+			followers,
+			about,
+			following,
+			numberOfTweets,
+			imageUrl,
+		} = userFields.data() as UserData
+
+		return {
+			name,
+			surname,
+			email: userEmail,
+			phone,
+			tag,
+			birthDate: birthDate || null,
+			id,
+			token,
+			followers,
+			about,
+			following,
+			numberOfTweets,
+			imageUrl,
 		}
 	} catch (error) {
 		return undefined
