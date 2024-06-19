@@ -22,6 +22,7 @@ export const LoaderItem = styled.span`
 	border-radius: 50%;
 	position: relative;
 	animation: ${rotate} 1s linear infinite;
+
 	&:before {
 		content: '';
 		box-sizing: border-box;

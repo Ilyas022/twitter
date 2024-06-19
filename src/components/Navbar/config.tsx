@@ -7,7 +7,7 @@ import {
 	MORE_PAGE_ROUTE,
 	NOTIFICATIONS_PAGE_ROUTE,
 	PROFILE_PAGE_ROUTE,
-} from 'constants/routeLinks'
+} from 'constants/routes'
 
 import { BookmarksIcon, HomeIcon, ExploreIcon, ListsIcon, MessagesIcon, MoreIcon, NotificationIcon, ProfileIcon } from './styled'
 

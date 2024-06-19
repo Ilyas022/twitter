@@ -10,7 +10,7 @@ import AddTweet from 'components/AddTweet'
 import PopUp from 'components/PopUp'
 import EditProfilePopUp from 'components/PopUps/EditProfilePopUp'
 import Tweets from 'components/Tweets'
-import { NOT_FOUND_PAGE_ROUTE } from 'constants/routeLinks'
+import { NOT_FOUND_PAGE_ROUTE } from 'constants/routes'
 import { useTypedSelector } from 'hooks/useTypedSelector'
 import TweetSearchBar from 'pages/ProfilePage/TweetSearchBar'
 import { getTweetsWithAuthors } from 'src/api/getTweetsWithAuthors'
@@ -57,7 +57,7 @@ function ProfilePage() {
 
 	useEffect(() => {
 		getTweetsWithAuthors(tweetsData, setTweets)
-	}, [tweetsData])
+	}, [tweetsData, userData])
 
 	if ((userLoading && tweetsLoading) || userLoading || tweetsLoading) {
 		return <div>loading</div>

@@ -88,8 +88,10 @@ export const ProfileCard = styled.div`
 `
 
 export const ProfileCardIcon = styled.img`
-	width: ${(props) => getSizes(props, 2, 1)};
-	height: ${(props) => getSizes(props, 2, 6)};
+	width: ${(props) => getSizes(props, 2)};
+	height: ${(props) => getSizes(props, 2)};
+	border-radius: 50%;
+	object-fit: cover;
 `
 
 export const ProfileCardInfo = styled.div``

@@ -78,7 +78,7 @@ function TweetItem({ author, createdAt, id, likes, text, imageUrl, onClose }: Tw
 
 	return (
 		<Tweet>
-			<UsetIcon src={defaultUserIcon} />
+			<UsetIcon src={author.imageUrl || defaultUserIcon} />
 			<TweetInner>
 				<TweetInfo>
 					<UserName>{`${author.name} ${author.surname}`}</UserName>

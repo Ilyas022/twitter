@@ -16,7 +16,7 @@ function AddTweet({ onClose }: AddTweetProps) {
 	const [image, setImage] = useState<File | null>(null)
 	const [uploadFile] = useUploadFile()
 
-	const { id, numberOfTweets } = useTypedSelector(selectUser)
+	const { id, numberOfTweets, imageUrl: userImage } = useTypedSelector(selectUser)
 	const { incTweetsNumber } = useActions()
 
 	const db = getFirestore()
@@ -64,7 +64,7 @@ function AddTweet({ onClose }: AddTweetProps) {
 
 	return (
 		<Item>
-			<UserIcon src={ImagePlaceHolder} />
+			<UserIcon src={userImage || ImagePlaceHolder} />
 			<Container>
 				<TextArea value={tweetText} onChange={handleTextChange} placeholder="What's happening Tweet" />
 				<ControlsContainer>

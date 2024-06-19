@@ -28,7 +28,7 @@ export interface Theme {
 }
 
 export type UserData = {
-	birthDate: { seconds: number; nanoseconds: number } | null
+	birthDate: Timestamp | null
 	email: string
 	name: string
 	phone: string | null
@@ -55,6 +55,7 @@ export interface AuthorType {
 	tag: string
 	surname: string
 	name: string
+	imageUrl: string | null
 }
 
 export interface User {
@@ -64,6 +65,7 @@ export interface User {
 	phone: string
 	surname: string
 	tag: string
+	imageUrl: string | null
 }
 
 export interface TweetType {

@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom'
 
-import { AUTH_PAGE_ROUTE, PROFILE_PAGE_ROUTE } from 'constants/routeLinks'
+import { AUTH_PAGE_ROUTE, PROFILE_PAGE_ROUTE } from 'constants/routes'
 import { useTypedSelector } from 'hooks/useTypedSelector'
 import { selectUser } from 'store/selectors/userSelectors'
 

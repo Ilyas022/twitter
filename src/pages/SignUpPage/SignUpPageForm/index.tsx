@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import FormItem from 'components/FormItem'
 import Select from 'components/Select'
-import { AUTH_PAGE_ROUTE, FEED_PAGE_ROUTE } from 'constants/routeLinks'
+import { AUTH_PAGE_ROUTE, FEED_PAGE_ROUTE } from 'constants/routes'
 import { useActions } from 'hooks/useActions'
 import { signUpUser } from 'src/api/signUpUser'
 
@@ -56,7 +56,7 @@ function SignUpPageForm() {
 			<FormItem errorMessage={errors.phone?.message}>
 				<Input
 					$error={!!errors.phone?.message}
-					placeholder="Phone number | follow mask +xxx(xx)xxx-xx-xx"
+					placeholder="Phone number | follow mask +xxxxxxxxxxxx"
 					{...register('phone')}
 					maxLength={17}
 				/>

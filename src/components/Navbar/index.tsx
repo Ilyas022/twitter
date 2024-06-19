@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import defaultUserIcon from 'assets/images/defaultUserIcon.png'
 import AddTweet from 'components/AddTweet'
 import PopUp from 'components/PopUp'
-import { AUTH_PAGE_ROUTE } from 'constants/routeLinks'
+import { AUTH_PAGE_ROUTE } from 'constants/routes'
 import { useActions } from 'hooks/useActions'
 import { useTypedSelector } from 'hooks/useTypedSelector'
 import { selectUser } from 'store/selectors/userSelectors'
@@ -27,7 +27,7 @@ import {
 
 function Navbar() {
 	const { pathname } = useLocation()
-	const { id } = useTypedSelector(selectUser)
+	const { id, name, imageUrl, tag } = useTypedSelector(selectUser)
 	const auth = getAuth()
 	const { unSetUser } = useActions()
 	const navigate = useNavigate()
@@ -61,10 +61,10 @@ function Navbar() {
 			</LinksContainer>
 			<Button onClick={handleOpenPopUp}>Tweet</Button>
 			<ProfileCard>
-				<ProfileCardIcon src={defaultUserIcon} />
+				<ProfileCardIcon src={imageUrl || defaultUserIcon} />
 				<ProfileCardInfo>
-					<ProfileCardName>Bobur</ProfileCardName>
-					<ProfileCarTag>@bobur_mavlonov</ProfileCarTag>
+					<ProfileCardName>{name}</ProfileCardName>
+					<ProfileCarTag>{tag}</ProfileCarTag>
 				</ProfileCardInfo>
 			</ProfileCard>
 			<Button onClick={handleLogOutClick}>Log out</Button>
