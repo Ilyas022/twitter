@@ -8,7 +8,7 @@ import { ToggleInput, ToggleLabel, ToggleSpan } from './styled'
 
 export function ThemeToggler() {
 	const { name } = useTypedSelector(selectTheme)
-	const [isToggled, setIsToggled] = useState<boolean>(name === 'dark')
+	const [isToggled, setIsToggled] = useState(name === 'dark')
 	const { setTheme } = useActions()
 
 	const onToggle = () => {
