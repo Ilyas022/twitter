@@ -32,39 +32,37 @@ export const signUpUser = async (data: FormData) => {
 		})
 
 		const userFields = await getDoc(ref)
-		if (userFields.exists()) {
-			const {
-				birthDate,
-				email: userEmail,
-				name: userName,
-				phone: userPhone,
-				surname: userSurname,
-				tag,
-				about,
-				followers,
-				following,
-				numberOfTweets,
-				imageUrl,
-			} = userFields.data() as UserData
 
-			return {
-				name: userName,
-				surname: userSurname,
-				email: userEmail,
-				phone: userPhone,
-				tag,
-				birthDate: birthDate || null,
-				id: userId,
-				token,
-				about,
-				followers,
-				following,
-				numberOfTweets,
-				imageUrl,
-			}
+		if (!userFields.exists()) return
+		const {
+			birthDate,
+			email: userEmail,
+			name: userName,
+			phone: userPhone,
+			surname: userSurname,
+			tag,
+			about,
+			followers,
+			following,
+			numberOfTweets,
+			imageUrl,
+		} = userFields.data() as UserData
+
+		return {
+			name: userName,
+			surname: userSurname,
+			email: userEmail,
+			phone: userPhone,
+			tag,
+			birthDate: birthDate || null,
+			id: userId,
+			token,
+			about,
+			followers,
+			following,
+			numberOfTweets,
+			imageUrl,
 		}
-
-		return undefined
 	} catch (error) {
 		return undefined
 	}

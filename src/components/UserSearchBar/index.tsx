@@ -21,6 +21,7 @@ import {
 	TweetsContainer,
 	NoTweetsText,
 	UserImage,
+	UserInfo,
 } from './styled'
 
 function UserSearchBar() {
@@ -98,12 +99,12 @@ function UserSearchBar() {
 						return (
 							<SearchTweetItem key={user.id} onClick={() => handleUserClick(user.id)}>
 								<UserImage src={imageUrl || defaultUserIcon} />
-								<div>
+								<UserInfo>
 									<TweetText>
 										{name} {surname}
 									</TweetText>
 									<TweetText>{tag}</TweetText>
-								</div>
+								</UserInfo>
 							</SearchTweetItem>
 						)
 					})

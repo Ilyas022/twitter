@@ -1,23 +1,21 @@
 import { getAuth } from 'firebase/auth'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { createPortal } from 'react-dom'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import defaultUserIcon from 'assets/images/defaultUserIcon.png'
 import AddTweet from 'components/AddTweet'
+import NavbarLinks from 'components/NavbarLinks'
 import PopUp from 'components/PopUp'
 import { AUTH_PAGE_ROUTE } from 'constants/routes'
 import { useActions } from 'hooks/useActions'
 import { useTypedSelector } from 'hooks/useTypedSelector'
 import { selectUser } from 'store/selectors/userSelectors'
 
-import { navbarLinks } from './config'
 import {
 	Button,
-	LinksContainer,
 	LogoIcon,
 	NavbarItem,
-	NavbarLink,
 	ProfileCarTag,
 	ProfileCard,
 	ProfileCardIcon,
@@ -26,8 +24,7 @@ import {
 } from './styled'
 
 function Navbar() {
-	const { pathname } = useLocation()
-	const { id, name, imageUrl, tag } = useTypedSelector(selectUser)
+	const { name, imageUrl, tag } = useTypedSelector(selectUser)
 	const auth = getAuth()
 	const { unSetUser } = useActions()
 	const navigate = useNavigate()
@@ -46,19 +43,7 @@ function Navbar() {
 	return (
 		<NavbarItem>
 			<LogoIcon />
-			<LinksContainer>
-				{navbarLinks.map(({ icon, title, path }) => {
-					const linkPath = title === 'Profile' ? `/profile/${id}` : path
-					const active = title === 'Profile' ? `${pathname}` === `${path}/${id}` : pathname === path
-
-					return (
-						<NavbarLink to={linkPath} key={title} $active={active}>
-							{React.createElement(icon)}
-							<p>{title}</p>
-						</NavbarLink>
-					)
-				})}
-			</LinksContainer>
+			<NavbarLinks />
 			<Button onClick={handleOpenPopUp}>Tweet</Button>
 			<ProfileCard>
 				<ProfileCardIcon src={imageUrl || defaultUserIcon} />

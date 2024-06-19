@@ -1,22 +1,18 @@
 import { getAuth } from 'firebase/auth'
-import React, { useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
+import NavbarLinks from 'components/NavbarLinks'
 import { AUTH_PAGE_ROUTE } from 'constants/routes'
 import { useActions } from 'hooks/useActions'
 import { useScrollLock } from 'hooks/useScrollLock'
-import { useTypedSelector } from 'hooks/useTypedSelector'
-import { selectUser } from 'store/selectors/userSelectors'
 
-import { Button, LinksContainer, LogoIcon, Menu, NavbarLink, TogglerContainer } from './styled'
+import { Button, LogoIcon, Menu, TogglerContainer } from './styled'
 import { MenuBurgerProps } from './types'
-import { navbarLinks } from '../Navbar/config'
 import { ThemeToggler } from '../ThemeToggler'
 
 function MenuBurger({ isOpened, handleOpen }: MenuBurgerProps) {
 	const [lockScroll, unlockScroll] = useScrollLock()
-	const { pathname } = useLocation()
-	const { id } = useTypedSelector(selectUser)
 	const auth = getAuth()
 
 	const { unSetUser } = useActions()
@@ -27,10 +23,6 @@ function MenuBurger({ isOpened, handleOpen }: MenuBurgerProps) {
 		auth.signOut()
 		unSetUser()
 		navigate(AUTH_PAGE_ROUTE)
-	}
-
-	const handleClick = () => {
-		handleOpen()
 	}
 
 	useEffect(() => {
@@ -47,21 +39,7 @@ function MenuBurger({ isOpened, handleOpen }: MenuBurgerProps) {
 			<TogglerContainer>
 				<ThemeToggler />
 			</TogglerContainer>
-
-			<LinksContainer>
-				{navbarLinks.map(({ icon, title, path }) => {
-					const linkPath = title === 'Profile' ? `/profile/${id}` : path
-					const active = title === 'Profile' ? `${pathname}` === `${path}/${id}` : pathname === path
-
-					return (
-						<NavbarLink onClick={handleClick} to={linkPath} key={title} $active={active}>
-							{React.createElement(icon)}
-							<p>{title}</p>
-						</NavbarLink>
-					)
-				})}
-			</LinksContainer>
-
+			<NavbarLinks handleOpen={handleOpen} />
 			<Button onClick={handleLogOutClick}>Log out</Button>
 		</Menu>
 	)

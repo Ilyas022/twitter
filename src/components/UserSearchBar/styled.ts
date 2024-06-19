@@ -121,6 +121,8 @@ export const NoTweetsText = styled.p`
 	margin: auto 0;
 `
 
+export const UserInfo = styled.div``
+
 export const UserImage = styled.img`
 	border-radius: 50%;
 	object-fit: cover;

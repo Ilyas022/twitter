@@ -47,8 +47,7 @@ function EditProfilePopUp({ onClose }: EditProfilePopUpProps) {
 			const formattedDate = `${year}-${month}-${day}`
 			reset({
 				about,
-				// @ts-ignore
-				birthDate: formattedDate,
+				birthDate: formattedDate as unknown as Date,
 				email,
 				name,
 				phone,

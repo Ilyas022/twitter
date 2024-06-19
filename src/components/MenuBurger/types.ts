@@ -6,7 +6,3 @@ export interface MenuBurgerProps {
 export interface MenuProps {
 	$open?: boolean
 }
-
-export interface NavbarLinkProps {
-	$active: boolean
-}

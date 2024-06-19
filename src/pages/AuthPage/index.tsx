@@ -22,6 +22,7 @@ import {
 	Footer,
 	FooterLink,
 	GoogleIcon,
+	GoogleSignUpText,
 	Info,
 	Login,
 	LogoIcon,
@@ -63,7 +64,7 @@ function AuthPage() {
 						<SubTitle>Join Twitter today</SubTitle>
 						<Button onClick={handleGoogleAuth}>
 							<GoogleIcon />
-							<span>Sign up with Google</span>
+							<GoogleSignUpText>Sign up with Google</GoogleSignUpText>
 						</Button>
 						<Button onClick={handleSignUpWithEmailClick}>Sign up with email</Button>
 						<Warning>
